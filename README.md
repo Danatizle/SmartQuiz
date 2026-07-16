@@ -67,7 +67,7 @@ SmartQuiz/
 ```
 ## Demo en vivo
 
-🔗 [fhernandezleonusat.pythonanywhere.com](https://fhernandezleonusat.pythonanywhere.com/)
+🔗 [danatiznadoleonusat.pythonanywhere.com](https://danatiznadoleonusat.pythonanywhere.com)
 
 ## Usuarios de prueba
 
