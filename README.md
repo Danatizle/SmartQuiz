@@ -20,7 +20,7 @@ Plataforma web de evaluación académica tipo quiz interactivo, con roles de pro
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/AlonsoUSAT/SmartQuiz.git
+   git clone https://github.com/Danatizle/SmartQuiz.git
    cd SmartQuiz
    ```
 
