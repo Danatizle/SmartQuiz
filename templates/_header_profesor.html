@@ -1,0 +1,21 @@
+<header class="main-header">
+    <nav class="container header-nav">
+        <div class="nav-left-group">
+            <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Smartquiz Logo" class="site-logo">
+        </div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="{{ url_for('inicioProfesores') }}" class="nav-button">Inicio</a>
+                <a href="#" class="nav-button">Explorar</a>
+                <a href="{{ url_for('inicioProfesores') }}" class="nav-button active">Mis Quizzes</a>
+            </div>
+            <div class="profile-container">
+                <img src="{{ url_for('static', filename='img/avatar_placeholder.png') }}" alt="Avatar del usuario" class="user-avatar" id="avatar-button">
+                <div class="profile-dropdown hidden" id="profile-menu">
+                    <a href="{{ url_for('miPerfil') }}">Mi perfil</a>
+                    <a href="{{ url_for('logout') }}">Salir</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

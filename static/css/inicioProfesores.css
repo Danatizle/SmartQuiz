@@ -1,0 +1,2434 @@
+/* ==============================================
+   Hoja de Estilos para SmartQuiz - Adaptada
+   ============================================== */
+
+:root {
+
+    /* Paleta Púrpura/Rosa */
+
+    --color-primary: #7c68ee;
+
+    --color-primary-dark: #6952d6;
+
+    --color-primary-light: #9b8df5;
+
+
+
+    --color-accent-pink: #ff6b9d;
+
+    --color-accent-green: #4ade80;
+
+
+
+    --color-primary-base: #7c68ee;
+
+    --color-primary-dark: #6952d6;
+
+    --color-success-base: #4ade80;
+
+    --color-success-dark: #059669;
+
+
+
+    --color-border: #e9e7f5;
+
+
+
+    /* Colores de Fondo y Texto Actualizados */
+
+    --color-bg: ##f8f7ff; /* Fondo claro/suave */
+
+    --color-card: #ffffff; /* Fondo de tarjetas */
+
+    --color-text-dark: #2d3748; /* Texto oscuro/títulos */
+
+    --color-text-medium: #718096; /* Texto secundario/descripciones */
+
+    --color-border: #e2e8f0; /* Borde suave */
+
+
+
+    /* Sombras más grandes y prominentes (Adaptado del estilo dinámico) */
+
+    --shadow-sm: 0 2px 8px rgba(124, 104, 238, 0.08);
+
+    --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.15);
+
+}
+
+
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    background: linear-gradient(135deg, #f8f7ff 0%, #ede9fe 100%);
+
+    color: var(--color-text-dark);
+
+    position: relative;
+
+}
+
+
+
+/* Patrón decorativo de fondo */
+
+body::before {
+
+    content: '';
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 0;
+
+}
+
+
+
+.container {
+
+    max-width: 1320px;
+
+    margin: 0 auto;
+
+    padding: 0 2rem;
+
+    position: relative;
+
+    z-index: 1;
+
+}
+
+
+
+/* --- 2. Header y Navegación Superior ADAPTADA --- */
+
+.main-header {
+
+    background-color: var(--color-card);
+
+    border-bottom: 1px solid var(--color-border);
+
+    padding: 1rem 0;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05); /* Sombra ligera para el header */
+
+}
+
+
+
+.header-nav {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+
+.nav-left-group, .nav-right-group {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+}
+
+
+
+.site-logo {
+
+    height: 60px;
+
+    /* Puedes añadir un estilo de fondo al logo si es un contenedor en lugar de una imagen */
+
+    /* background: linear-gradient(135deg, var(--color-primary-base), var(--color-primary-dark)); */
+
+    /* border-radius: 12px; */
+
+}
+
+
+
+.nav-links {
+
+    display: flex;
+
+    gap: 0.5rem;
+
+}
+
+
+
+.nav-button {
+
+    padding: 0.6rem 1.2rem; /* Aumento de padding para un mejor toque */
+
+    border-radius: 10px; /* Bordes más redondeados */
+
+    text-decoration: none;
+
+    color: var(--color-text-medium);
+
+    font-weight: 500;
+
+    transition: all 0.3s ease;
+
+}
+
+
+
+.nav-button:hover {
+
+    background-color: #f1f5f9; /* Fondo de hover más suave */
+
+    color: var(--color-text-dark);
+
+    transform: translateY(-1px);
+
+}
+
+
+
+.nav-button.active {
+
+    background: linear-gradient(135deg, #7c68ee 0%, #9b8df5 100%);
+
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(124, 104, 238, 0.3);
+
+}
+
+
+
+.profile-container {
+
+    position: relative;
+
+}
+
+
+
+.user-avatar {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    border: 3px solid #7c68ee;
+
+    transition: all 0.3s ease;
+
+}
+
+
+
+.user-avatar:hover {
+
+    transform: scale(1.1);
+
+    box-shadow: 0 0 0 4px rgba(124, 104, 238, 0.2);
+
+}
+
+
+
+.profile-dropdown {
+
+    position: absolute;
+
+    top: calc(100% + 10px);
+
+    right: 0;
+
+    background-color: var(--color-card);
+
+    border-radius: 12px; /* Bordes más redondeados */
+
+    box-shadow: var(--shadow-lg);
+
+    width: 200px; /* Un poco más ancho */
+
+    z-index: 101;
+
+    border: 1px solid var(--color-border);
+
+    overflow: hidden;
+
+}
+
+
+
+.profile-dropdown a {
+
+    padding: 0.75rem 1rem;
+
+    text-decoration: none;
+
+    color: var(--color-text-dark);
+
+    display: block;
+
+    font-weight: 500;
+
+}
+
+
+
+.profile-dropdown a:hover {
+
+    background-color: #f7fafc; /* Fondo de hover muy sutil */
+
+    color: var(--color-primary-base);
+
+}
+
+
+
+/* --- 3. Layout Principal (Sidebar y Contenido) --- */
+
+.page-content {
+
+    display: flex;
+
+    gap: 2.5rem;
+
+    align-items: flex-start;
+
+    padding-top: 2.5rem;
+
+    padding-bottom: 2.5rem;
+
+}
+
+
+
+.sidebar {
+
+    width: 240px;
+
+    flex-shrink: 0;
+
+    position: sticky;
+
+    top: 100px;
+
+}
+
+
+
+.main-content-area {
+
+    flex-grow: 1;
+
+    min-width: 0;
+
+}
+
+
+
+/* --- 4. Estilos de la Sidebar y el Área de Contenido ADAPTADA --- */
+
+.side-nav-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+
+
+    /* 💥 AGREGAR ESTA LÍNEA 💥 */
+
+    width: 100%;
+
+
+
+    padding: 12px 16px;
+
+    margin-bottom: 8px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color: var(--color-text-dark);
+
+    font-weight: 500;
+
+    transition: all 0.3s ease;
+
+}
+
+.side-nav-link:hover {
+
+    background-color: #e2e8f0; /* Color de hover más notorio */
+
+}
+
+
+
+/* Estilo para el enlace SELECCIONADO (activo) */
+
+.side-nav-link.active {
+
+    background: linear-gradient(135deg, #7c68ee 0%, #9b8df5 100%);
+
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(124, 104, 238, 0.3);
+
+}
+
+
+
+.side-nav-link.active svg {
+
+    stroke: white;
+
+}
+
+
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 1.5rem;
+
+}
+
+
+
+.page-title {
+
+    font-size: 2.5rem; /* Más grande */
+
+    font-weight: 800; /* Más audaz */
+
+    color: #2d3748;
+
+}
+
+
+
+.page-subtitle {
+
+    font-size: 1rem;
+
+    color: var(--color-text-medium);
+
+    margin-top: 0.25rem;
+
+}
+
+
+
+.btn-new-repo {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.75rem; /* Más espacio */
+
+    padding: 0.8rem 1.8rem; /* Más padding */
+
+    border-radius: 12px; /* Más redondeado */
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    /* Gradiente de Éxito para el botón principal */
+
+    background: linear-gradient(135deg, var(--color-success-base), var(--color-success-dark));
+
+    color: white;
+
+    border: none;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+
+}
+
+
+
+.btn-new-repo:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
+
+    background-color: var(--color-success-dark);
+
+}
+
+
+
+.search-section {
+
+    margin-bottom: 2rem;
+
+}
+
+
+
+.search-bar {
+
+    position: relative;
+
+}
+
+
+
+.search-bar svg {
+
+    position: absolute;
+
+    left: 1rem;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #a0aec0; /* Color de icono más suave */
+
+}
+
+
+
+.search-bar input {
+
+    width: 100%;
+
+    padding: 1rem 1rem 1rem 3.5rem; /* Más padding */
+
+    font-size: 1rem;
+
+    border: 1px solid var(--color-border);
+
+    border-radius: 12px; /* Más redondeado */
+
+    background-color: var(--color-card);
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+
+.search-bar input:focus {
+
+    outline: none;
+
+    border-color: var(--color-primary-base);
+
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+
+}
+
+
+
+/* --- 5. Cuadrícula de Quizzes (GRID LAYOUT) --- */
+
+#quiz-list-container.grid-container {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: 2rem; /* Más espacio entre tarjetas */
+
+}
+
+
+
+/* --- 6. Estilos de la Tarjeta del Quiz (repository-card) ADAPTADA --- */
+
+.repository-card {
+
+    background-color: var(--color-card);
+
+    border-radius: 20px;
+
+    border: 2px solid var(--color-border);
+
+        box-shadow: var(--shadow-sm);
+
+
+
+    transition: all 0.3s ease;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+
+.repository-card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow: 0 20px 25px rgba(124, 104, 238, 0.2);
+
+    border-color: #9b8df5;
+
+}
+
+
+
+.card-image-placeholder {
+
+    height: 150px;
+
+    background-color: #e2e8f0; /* Color de placeholder más suave */
+
+    border-radius: 16px 16px 0 0;
+
+}
+
+
+
+.card-content {
+
+    padding: 1.5rem; /* Más padding */
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex-grow: 1;
+
+}
+
+
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+}
+
+
+
+.card-title {
+
+    font-size: 1.25rem; /* Título más grande */
+
+    font-weight: 700;
+
+    flex-grow: 1;
+
+    color: var(--color-text-dark);
+
+}
+
+
+
+.card-description {
+
+    margin-top: 0.5rem;
+
+    color: var(--color-text-medium);
+
+    font-size: 0.95rem; /* Texto de descripción un poco más grande */
+
+}
+
+
+
+/* --- 7. ESTILOS DEL MENÚ DE 3 PUNTOS (CORREGIDO) ADAPTADO --- */
+
+.card-menu-container {
+
+    position: relative;
+
+    flex-shrink: 0;
+
+}
+
+
+
+.menu-toggle-btn {
+
+    background: transparent;
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 8px; /* Más padding en el botón */
+
+    border-radius: 50%;
+
+    color: var(--color-text-medium);
+
+    display: flex;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+
+
+.menu-toggle-btn:hover {
+
+    background-color: #f7fafc;
+
+    color: var(--color-primary-base);
+
+}
+
+
+
+.card-menu {
+
+    position: absolute;
+
+    top: 100%;
+
+    right: 0;
+
+    z-index: 50;
+
+    background-color: var(--color-card);
+
+    border-radius: 10px; /* Bordes redondeados */
+
+    box-shadow: var(--shadow-lg);
+
+    border: 1px solid var(--color-border);
+
+    min-width: 200px; /* Más ancho */
+
+    padding: 8px 0;
+
+}
+
+
+
+.menu-item {
+
+    display: flex;
+
+    width: 100%;
+
+    padding: 12px 18px; /* Más padding */
+
+    text-align: left;
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    color: var(--color-text-dark);
+
+    text-decoration: none;
+
+    font-weight: 500;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+}
+
+
+
+.menu-item:hover {
+
+    background-color: #f7fafc;
+
+    color: var(--color-primary-base);
+
+}
+
+
+
+.menu-item.btn-trash {
+
+    color: #e74c3c; /* Rojo para eliminar */
+
+}
+
+
+
+.menu-item.btn-trash:hover {
+
+    background-color: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+
+
+/* --- 8. Modal, Mensajes Flash y otros ADAPTADOS --- */
+
+.hidden {
+
+    visibility: hidden !important;
+
+    opacity: 0 !important;
+
+    /* Mantenemos el display: none !important; por si acaso, aunque visibility ya oculta */
+
+    display: none !important;
+
+}
+
+
+
+.modal-overlay:not(.hidden) { /* O simplemente quita .hidden del elemento */
+
+    visibility: visible;
+
+    opacity: 1;
+
+}
+
+
+
+.empty-state-message {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 3rem;
+
+    border: 2px dashed var(--color-border);
+
+    border-radius: 16px; /* Más redondeado */
+
+    color: var(--color-text-medium);
+
+}
+
+
+
+.modal-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7); /* Overlay más oscuro */
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+
+}
+
+
+
+.modal-content {
+
+    background: white;
+
+    padding: 2.5rem; /* Más padding */
+
+    border-radius: 16px; /* Más redondeado */
+
+    max-width: 450px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow-lg);
+
+    animation: fadeInScale 0.3s ease-out;
+
+}
+
+
+
+@keyframes fadeInScale {
+
+    from { opacity: 0; transform: scale(0.95); }
+
+    to { opacity: 1; transform: scale(1); }
+
+}
+
+
+
+
+
+.modal-actions {
+
+    margin-top: 1.5rem;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 1rem;
+
+}
+
+
+
+.btn-cancel, .btn-confirm-trash {
+
+    padding: 12px 25px; /* Más padding */
+
+    border-radius: 10px; /* Más redondeado */
+
+    border: 1px solid var(--color-border);
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+
+}
+
+
+
+.btn-cancel {
+
+    background: #f7fafc;
+
+    color: var(--color-text-dark);
+
+}
+
+
+
+.btn-cancel:hover {
+
+    background: #e2e8f0;
+
+}
+
+
+
+.btn-confirm-trash {
+
+    background: #e74c3c;
+
+    color: white;
+
+    border: 1px solid #e74c3c;
+
+}
+
+
+
+.btn-confirm-trash:hover {
+
+    background: #dc2626;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+
+}
+
+
+
+.flash-message-container {
+
+    position: fixed;
+
+    top: 80px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 1001;
+
+}
+
+
+
+.flash-message {
+
+    padding: 15px 25px;
+
+    background: linear-gradient(90deg, var(--color-primary-base), var(--color-primary-dark));
+
+    color: white;
+
+    border-radius: 10px; /* Más redondeado */
+
+    box-shadow: var(--shadow-md);
+
+}
+
+
+
+/* Ejemplo de CSS para la etiqueta Borrador ADAPTADA */
+
+.card-tag {
+
+    position: absolute;
+
+    top: 12px; /* Un poco más de margen */
+
+    left: 12px;
+
+    padding: 6px 10px; /* Más padding */
+
+    border-radius: 8px; /* Más redondeado */
+
+    font-size: 0.8rem;
+
+    font-weight: bold;
+
+    color: white;
+
+    z-index: 10;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.borrador-tag {
+
+    background-color: #E60049; /* Color de Kahoot para "Borrador" - Mantengo este si es por marca */
+
+}
+
+
+
+/* Dentro de tu archivo CSS */
+
+
+
+.repository-card .card-image {
+
+  width: 100%;
+
+  height: 150px; /* Ajusta esta altura como prefieras */
+
+  background-size: cover; /* Escala la imagen para cubrir el área */
+
+  background-position: center; /* Centra la imagen */
+
+  background-repeat: no-repeat;
+
+  border-top-left-radius: 8px; /* O el radio de borde de tu tarjeta */
+
+  border-top-right-radius: 8px;
+
+  background-color: #eee; /* Un color de fondo mientras carga o si falla */
+
+}
+
+
+
+/* Puedes ajustar el placeholder si quieres que tenga la misma altura */
+
+.repository-card .card-image-placeholder {
+
+   width: 100%;
+
+   height: 150px; /* Misma altura que la imagen */
+
+   /* Mantén o ajusta otros estilos del placeholder */
+
+   border-top-left-radius: 8px;
+
+   border-top-right-radius: 8px;
+
+   background-image: linear-gradient(45deg, #e0e0e0, #f5f5f5); /* Ejemplo */
+
+}
+
+
+
+/* Colores de fondo alternados para quiz cards */
+
+.repository-card:nth-child(6n+1) .card-image-placeholder:not(.card-image) {
+
+    background: linear-gradient(135deg, #7c68ee 0%, #9b8df5 100%);
+
+}
+
+
+
+.repository-card:nth-child(6n+2) .card-image-placeholder:not(.card-image) {
+
+    background: linear-gradient(135deg, #ff6b9d 0%, #ff8fb5 100%);
+
+}
+
+
+
+.repository-card:nth-child(6n+3) .card-image-placeholder:not(.card-image) {
+
+    background: linear-gradient(135deg, #4ade80 0%, #6ee7b7 100%);
+
+}
+
+
+
+.repository-card:nth-child(6n+4) .card-image-placeholder:not(.card-image) {
+
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+
+}
+
+
+
+.repository-card:nth-child(6n+5) .card-image-placeholder:not(.card-image) {
+
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+
+}
+
+
+
+.repository-card:nth-child(6n+6) .card-image-placeholder:not(.card-image) {
+
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+
+}
+
+
+
+
+
+/* Tablet Grande (1024px - 1280px) */
+
+@media (max-width: 1280px) {
+
+    #quiz-list-container.grid-container {
+
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
+    }
+
+}
+
+
+
+/* Tablet (768px - 1024px) - 2 COLUMNAS */
+
+@media (max-width: 1024px) {
+
+
+
+
+
+    .page-content {
+
+        gap: 2rem;
+
+    }
+
+
+
+    .sidebar {
+
+        width: 200px;
+
+    }
+
+
+
+    .side-nav-link {
+
+        width: 100%;
+
+        padding: 10px 14px;
+
+        font-size: 0.95rem;
+
+    }
+
+
+
+    .page-title {
+
+        font-size: 2rem;
+
+    }
+
+
+
+    .btn-new-repo {
+
+        padding: 0.75rem 1.5rem;
+
+        font-size: 0.95rem;
+
+    }
+
+
+
+    /* 2 COLUMNAS en tablet */
+
+    #quiz-list-container.grid-container {
+
+        grid-template-columns: repeat(2, 1fr) !important;
+
+        gap: 1.5rem;
+
+    }
+
+
+
+    .repository-card {
+
+        width: 100%;
+
+    }
+
+}
+
+
+
+/* Tablet Pequeña (600px - 768px) - 2 COLUMNAS */
+
+@media (max-width: 768px) and (min-width: 601px) {
+
+    .container {
+
+
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* Header Mobile */
+
+    .main-header {
+
+        padding: 0.75rem 0;
+
+    }
+
+
+
+    .header-nav {
+
+        flex-wrap: wrap;
+
+        gap: 0.75rem;
+
+        width: 100%;
+
+        justify-content: space-between;
+
+    }
+
+
+
+    .site-logo {
+
+        height: 50px;
+
+    }
+
+
+
+    .nav-links {
+
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 0.5rem;
+
+        margin-top: 0.5rem;
+
+    }
+
+
+
+    .nav-button {
+
+        padding: 0.6rem 1rem;
+
+        font-size: 0.875rem;
+
+    }
+
+
+
+    .user-avatar {
+
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+
+
+    /* Layout Apilado */
+
+    .page-content {
+
+        flex-direction: column !important;
+
+        gap: 1.5rem;
+
+        padding-top: 1.5rem;
+
+        padding-bottom: 1.5rem;
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* Sidebar Horizontal */
+
+    .sidebar {
+
+        width: 100% !important;
+
+        position: static !important;
+
+    }
+
+
+
+    .side-nav {
+
+        display: flex;
+
+        flex-direction: row;
+
+        gap: 0.5rem;
+
+        overflow-x: auto;
+
+        padding-bottom: 0.5rem;
+
+        -webkit-overflow-scrolling: touch;
+
+    }
+
+
+
+    .side-nav-link {
+
+        width: auto !important;
+
+        flex-grow: 1;
+
+        flex-shrink: 0;
+
+        justify-content: center;
+
+        white-space: nowrap;
+
+        min-width: 140px;
+
+    }
+
+
+
+    .side-nav-link svg {
+
+        flex-shrink: 0;
+
+    }
+
+
+
+    /* CRÍTICO: Main Content Area debe usar 100% */
+
+    .main-content-area {
+
+        width: 100% !important;
+
+        min-width: 100% !important;
+
+        max-width: 100% !important;
+
+    }
+
+
+
+    /* Page Header */
+
+    .page-header {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 1rem;
+
+        width: 100% !important;
+
+    }
+
+
+
+    .page-title {
+
+        font-size: 1.75rem;
+
+    }
+
+
+
+    .page-subtitle {
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    .btn-new-repo {
+
+        width: 100%;
+
+        justify-content: center;
+
+        padding: 0.85rem 1.5rem;
+
+    }
+
+
+
+    /* Search Section */
+
+    .search-section {
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* Búsqueda */
+
+    .search-bar {
+
+        width: 100% !important;
+
+    }
+
+
+
+    .search-bar input {
+
+        padding: 0.9rem 0.9rem 0.9rem 3.25rem;
+
+        font-size: 0.95rem;
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* SOLUCIÓN: Grid de 2 COLUMNAS para 600px-768px */
+
+    .repository-grid {
+
+        width: 100% !important;
+
+    }
+
+
+
+    #quiz-list-container {
+
+        width: 100% !important;
+
+    }
+
+
+
+    #quiz-list-container.grid-container {
+
+        display: grid !important;
+
+        grid-template-columns: repeat(2, 1fr) !important;
+
+        gap: 1.25rem !important;
+
+        width: 100% !important;
+
+    }
+
+
+
+    .repository-card {
+
+        max-width: 100% !important;
+
+        width: 100% !important;
+
+        box-sizing: border-box !important;
+
+    }
+
+
+
+    .card-image,
+
+    .card-image-placeholder {
+
+        height: 140px;
+
+        width: 100%;
+
+    }
+
+
+
+    .card-content {
+
+        padding: 1.25rem;
+
+    }
+
+
+
+    .card-title {
+
+        font-size: 1.05rem;
+
+    }
+
+
+
+    .card-description {
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    /* Modal */
+
+    .modal-content {
+
+        padding: 2rem 1.5rem;
+
+        margin: 1rem;
+
+        max-width: 90%;
+
+    }
+
+
+
+    .modal-actions {
+
+        flex-direction: column;
+
+        gap: 0.75rem;
+
+    }
+
+
+
+    .btn-cancel,
+
+    .btn-confirm-trash {
+
+        width: 100%;
+
+    }
+
+
+
+    /* Profile Dropdown */
+
+    .profile-dropdown {
+
+        width: 180px;
+        right: -8rem;
+
+    }
+
+
+
+    .nav-right-group {
+
+        margin-left: auto;
+
+        order: 3;
+
+    }
+
+
+
+    .user-avatar {
+
+        flex-shrink: 0;
+
+    }
+
+
+
+}
+
+
+
+/* Mobile (hasta 600px) - 1 COLUMNA */
+
+@media (max-width: 600px) {
+
+    .container {
+
+
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* Header Mobile */
+
+    .main-header {
+
+        padding: 0.75rem 0;
+
+    }
+
+
+
+    .header-nav {
+
+        flex-wrap: wrap;
+
+        gap: 0.75rem;
+
+        width: 100%;
+
+        justify-content: space-between;
+
+    }
+
+
+
+    .site-logo {
+
+        height: 50px;
+
+    }
+
+
+
+    .nav-links {
+
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 0.5rem;
+
+        margin-top: 0.5rem;
+
+    }
+
+
+
+    .nav-button {
+
+        padding: 0.6rem 1rem;
+
+        font-size: 0.875rem;
+
+    }
+
+
+
+    .user-avatar {
+
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+
+
+    /* Layout Apilado */
+
+    .page-content {
+
+        flex-direction: column !important;
+
+        gap: 1.5rem;
+
+        padding-top: 1.5rem;
+
+        padding-bottom: 1.5rem;
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* Sidebar Horizontal */
+
+    .sidebar {
+
+        width: 100% !important;
+
+        position: static !important;
+
+    }
+
+
+
+    .side-nav {
+
+        display: flex;
+
+        flex-direction: row;
+
+        gap: 0.5rem;
+
+        overflow-x: auto;
+
+        padding-bottom: 0.5rem;
+
+        -webkit-overflow-scrolling: touch;
+
+    }
+
+
+
+    .side-nav-link {
+
+        width: auto !important;
+
+        flex-grow: 1;
+
+        flex-shrink: 0;
+
+        justify-content: center;
+
+        white-space: nowrap;
+
+        min-width: 140px;
+
+    }
+
+
+
+    .side-nav-link svg {
+
+        flex-shrink: 0;
+
+    }
+
+
+
+    /* CRÍTICO: Main Content Area debe usar 100% */
+
+    .main-content-area {
+
+        width: 100% !important;
+
+        min-width: 100% !important;
+
+        max-width: 100% !important;
+
+    }
+
+
+
+    /* Page Header */
+
+    .page-header {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 1rem;
+
+        width: 100% !important;
+
+    }
+
+
+
+    .page-title {
+
+        font-size: 1.75rem;
+
+    }
+
+
+
+    .page-subtitle {
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    .btn-new-repo {
+
+        width: 100%;
+
+        justify-content: center;
+
+        padding: 0.85rem 1.5rem;
+
+    }
+
+
+
+    /* Search Section */
+
+    .search-section {
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* Búsqueda */
+
+    .search-bar {
+
+        width: 100% !important;
+
+    }
+
+
+
+    .search-bar input {
+
+        padding: 0.9rem 0.9rem 0.9rem 3.25rem;
+
+        font-size: 0.95rem;
+
+        width: 100% !important;
+
+    }
+
+
+
+    /* SOLUCIÓN: Grid de 1 COLUMNA para mobile */
+
+    .repository-grid {
+
+        width: 100% !important;
+
+    }
+
+
+
+    #quiz-list-container {
+
+        width: 100% !important;
+
+    }
+
+
+
+    #quiz-list-container.grid-container {
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 1.25rem !important;
+
+        width: 100% !important;
+
+    }
+
+
+
+    .repository-card {
+
+        max-width: 100% !important;
+
+        width: 100% !important;
+
+        box-sizing: border-box !important;
+
+    }
+
+
+
+    .card-image,
+
+    .card-image-placeholder {
+
+        height: 160px;
+
+        width: 100%;
+
+    }
+
+
+
+    .card-content {
+
+        padding: 1.25rem;
+
+    }
+
+
+
+    .card-title {
+
+        font-size: 1.1rem;
+
+    }
+
+
+
+    .card-description {
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    /* Modal */
+
+    .modal-content {
+
+        padding: 2rem 1.5rem;
+
+        margin: 1rem;
+
+        max-width: 90%;
+
+    }
+
+
+
+    .modal-actions {
+
+        flex-direction: column;
+
+        gap: 0.75rem;
+
+    }
+
+
+
+    .btn-cancel,
+
+    .btn-confirm-trash {
+
+        width: 100%;
+
+    }
+
+
+
+    /* Profile Dropdown */
+
+    .profile-dropdown {
+
+        width: 180px;
+        right: -8rem;
+
+    }
+
+
+
+
+    .nav-right-group {
+
+        margin-left: auto;
+
+        order: 3;
+
+    }
+
+
+
+    .user-avatar {
+
+        flex-shrink: 0;
+
+    }
+
+}
+
+
+
+/* Mobile Pequeño (hasta 480px) */
+
+@media (max-width: 480px) {
+
+
+
+    /* Header */
+
+    .site-logo {
+
+        height: 45px;
+
+    }
+
+
+
+    .header-nav {
+
+        flex-wrap: wrap;
+
+        gap: 0.75rem;
+
+        width: 100%;
+
+        justify-content: space-between;
+
+    }
+
+
+
+    .nav-button {
+
+        padding: 0.5rem 0.75rem;
+
+        font-size: 0.8rem;
+
+    }
+
+
+
+    .user-avatar {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+
+
+    /* Sidebar Horizontal */
+
+    .side-nav-link {
+
+        font-size: 0.85rem;
+
+        padding: 8px 12px;
+
+        min-width: 120px;
+
+    }
+
+
+
+    /* Page Header */
+
+    .page-title {
+
+        font-size: 1.5rem;
+
+    }
+
+
+
+    .page-subtitle {
+
+        font-size: 0.85rem;
+
+    }
+
+
+
+    .btn-new-repo {
+
+        padding: 0.75rem 1.25rem;
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    /* Búsqueda */
+
+    .search-bar input {
+
+        padding: 0.8rem 0.8rem 0.8rem 3rem;
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    /* Tarjetas */
+
+    .card-image,
+
+    .card-image-placeholder {
+
+        height: 140px;
+
+    }
+
+
+
+    .card-content {
+
+        padding: 1rem;
+
+    }
+
+
+
+    .card-title {
+
+        font-size: 1rem;
+
+    }
+
+
+
+    .card-description {
+
+        font-size: 0.85rem;
+
+    }
+
+
+
+    .menu-toggle-btn {
+
+        padding: 6px;
+
+    }
+
+
+
+    .card-menu {
+
+        min-width: 180px;
+
+    }
+
+
+
+    .menu-item {
+
+        padding: 10px 14px;
+
+        font-size: 14px;
+
+    }
+
+
+
+    /* Modal */
+
+    .modal-content {
+
+        padding: 1.5rem 1rem;
+
+        margin: 0.75rem;
+
+    }
+
+
+
+    .modal-content h3 {
+
+        font-size: 1.25rem;
+
+    }
+
+
+
+    .modal-content p {
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    .btn-cancel,
+
+    .btn-confirm-trash {
+
+        padding: 10px 20px;
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    /* Flash Message */
+
+    .flash-message-container {
+
+        top: 70px;
+
+        left: 0.75rem;
+
+        right: 0.75rem;
+
+        transform: none;
+
+    }
+
+
+
+    .flash-message {
+
+        padding: 12px 18px;
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    /* Empty State */
+
+    .empty-state-message {
+
+        padding: 2rem 1rem;
+
+        font-size: 0.9rem;
+
+    }
+
+
+
+    /* Card Tag */
+
+    .card-tag {
+
+        top: 8px;
+
+        left: 8px;
+
+        padding: 4px 8px;
+
+        font-size: 0.7rem;
+
+    }
+
+
+
+    .nav-right-group {
+
+        margin-left: auto;
+
+        order: 3;
+
+    }
+
+
+
+    .user-avatar {
+
+        flex-shrink: 0;
+
+    }
+
+}
+
+
+
+/* Mejoras de accesibilidad para touch devices */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .nav-button,
+
+    .side-nav-link,
+
+    .menu-toggle-btn,
+
+    .menu-item,
+
+    .btn-new-repo,
+
+    .btn-cancel,
+
+    .btn-confirm-trash {
+
+        min-height: 44px;
+
+    }
+
+
+
+    .user-avatar {
+
+        min-width: 44px;
+
+        min-height: 44px;
+
+    }
+
+
+
+    .menu-toggle-btn svg {
+
+        pointer-events: none;
+
+    }
+
+}
+
+
+
+/* Landscape Mobile */
+@media (max-width: 768px) {
+    .header-nav {
+        justify-content: flex-start; /* Alinea todo a la izquierda */
+        gap: 0.5rem; /* Espacio entre elementos */
+        padding: 0 1rem; /* Padding horizontal para evitar que toque los bordes */
+    }
+
+    .nav-left-group {
+        margin-right: 0.5rem; /* Espacio entre logo y avatar */
+    }
+
+    .nav-right-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: 0; /* Elimina margen izquierdo */
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 0.5rem;
+        margin: 0;
+    }
+
+    .nav-button {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .profile-dropdown {
+        right: -8rem; /* Ajusta la posición del dropdown */
+        width: 180px;
+    }
+}
+
+@media (max-width: 600px) and (orientation: landscape) {
+
+    .page-content {
+
+        padding-top: 1rem;
+
+        padding-bottom: 1rem;
+
+    }
+
+
+
+    .page-title {
+
+        font-size: 1.5rem;
+
+    }
+
+
+
+    .modal-content {
+
+        max-height: 90vh;
+
+        overflow-y: auto;
+
+    }
+
+}
+

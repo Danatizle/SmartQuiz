@@ -1,0 +1,162 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    text-align: center;
+}
+
+.main-container {
+    padding: 40px 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Encabezado */
+.page-header h1 {
+    font-size: 2em;
+    font-weight: 600;
+    color: #444;
+    background-color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+/* --- ¡NUEVO! Estilos para botones de exportación --- */
+.export-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre botones */
+    margin-bottom: 40px;
+}
+
+.btn-export {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #495057;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.btn-export:hover {
+    background-color: #e9ecef;
+    border-color: #b1b9c2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.btn-export i {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+    font-size: 1.2em;
+}
+
+/* Colores de íconos */
+.fa-file-excel { color: #1D6F42; }
+.fa-google-drive { color: #FFC107; }
+
+/* Contenedor del Podio (igual que antes) */
+.podium-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    height: 400px;
+}
+
+.podium-spot {
+    width: 200px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.player-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.podium-bar {
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.first-place .podium-bar { height: 350px; }
+.second-place .podium-bar { height: 250px; }
+.third-place .podium-bar { height: 180px; }
+
+.podium-rank {
+    width: 100px;
+    height: 110px;
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.podium-rank i { font-size: 0.6em; margin-bottom: -10px; }
+
+.first-place .podium-rank { background-color: #ffd700; }
+.second-place .podium-rank { background-color: #c0c0c0; }
+.third-place .podium-rank { background-color: #cd7f32; }
+
+.player-score {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #555;
+    margin-top: 15px;
+}
+
+/* --- ¡NUEVO! Estilo para el texto de recompensa --- */
+.player-reward {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+
+/* Botón de acción final */
+.action-buttons {
+    margin-top: 60px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #007bff;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}

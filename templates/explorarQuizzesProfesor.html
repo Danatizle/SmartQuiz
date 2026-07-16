@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Quizzes - Smartquiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/explorarQuizzesProfesor.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/inicioProfesores.css') }}">
+</head>
+<body>
+
+    <header class="main-header">
+    <nav class="container header-nav">
+        <div class="nav-left-group">
+            <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Smartquiz Logo" class="site-logo">
+        </div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="{{ url_for('explorar_quizzes') }}" class="nav-button {% if current_page == 'explorar' %}active{% endif %}">Explorar</a>
+                <a href="{{ url_for('inicioProfesores') }}" class="nav-button {% if current_page == 'mis_quizzes' %}active{% endif %}">Mis Quizzes</a>
+            </div>
+            <div class="profile-container">
+                <img src="{{ url_for('static', filename='img/avatar_placeholder.png') }}" alt="Avatar del usuario" class="user-avatar" id="avatar-button">
+                <div class="profile-dropdown hidden" id="profile-menu">
+                    <a href="{{ url_for('miPerfil') }}">Mi perfil</a>
+                    <a href="{{ url_for('logout') }}">Salir</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <main class="container page-content-explore">
+
+        <div class="explore-header">
+            <h1>Explorar Quizzes Públicos</h1>
+            <p>Descubre y reutiliza quizzes creados por la comunidad para tus clases</p>
+        </div>
+
+        <div class="search-bar-container">
+            <div class="search-wrapper">
+                <input type="text" id="search-input" placeholder="Buscar quizzes por título...">
+            </div>
+        </div>
+
+        <div class="quiz-grid-explore">
+            {% for quiz in quizzes %}
+            <div class="quiz-card-explore" data-title="{{ quiz.titulo|lower }}">
+<div class="quiz-card-image" style="background-image: url('{{ quiz.imagen_portada or url_for('static', filename='img/placeholder_quiz.png') }}');"></div>                <div class="quiz-card-content">
+                    <h4>{{ quiz.titulo }}</h4>
+                    <p class="quiz-creator">Creado por: {{ quiz.creador }}</p>
+                    <div class="quiz-meta">
+                        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> {{ quiz.num_preguntas }} Preguntas</span>
+                        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> {{ quiz.veces_jugado }} veces jugado</span>
+                    </div>
+                    <div class="quiz-actions">
+                       <button class="btn-action btn-preview" onclick="abrirPreview({{ quiz.id_cuestionario }}, '{{ quiz.titulo }}')">
+                            Previsualizar
+                        </button>
+
+                        <button class="btn-action btn-duplicate" data-quiz-id="{{ quiz.id_cuestionario }}" data-quiz-titulo="{{ quiz.titulo }}">Duplicar</button>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="no-results-message">
+                <h3>No hay quizzes para explorar</h3>
+                <p>Parece que aún no hay quizzes públicos de otros profesores.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/explorarQuizzesProfesor.js') }}?v=1"></script>
+
+</html>

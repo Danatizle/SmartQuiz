@@ -1,0 +1,94 @@
+/* Estilos generales */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 400px; /* Ancho máximo para la tarjeta */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.site-name {
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #007bff; /* Color azul primario de SmartQuiz */
+}
+
+/* Tarjeta principal */
+.entry-card {
+    background-color: #ffffff;
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.entry-card label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    text-align: left;
+}
+
+.entry-card input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: #495057;
+    transition: all 0.2s ease-in-out;
+}
+
+.entry-card input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+    background-color: #ffffff;
+}
+
+.entry-card button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #007bff; /* Azul vibrante */
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase; /* Para que diga UNIRME en mayúsculas */
+}
+
+.entry-card button:hover {
+    background-color: #0056b3;
+}
+
+/* Información de la sala en la parte inferior */
+.room-info {
+    margin-top: 25px;
+    color: #6c757d;
+    font-size: 1em;
+}
+
+.room-info strong {
+    color: #007bff;
+    font-weight: 600;
+}

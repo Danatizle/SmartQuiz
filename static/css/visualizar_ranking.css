@@ -1,0 +1,127 @@
+/* Estilos generales */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.main-container {
+    padding: 40px 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Encabezado */
+.ranking-header h1 {
+    font-size: 2.5em;
+    color: #007bff; /* Azul primario de SmartQuiz */
+    margin-bottom: 10px;
+}
+
+.ranking-header p {
+    font-size: 1.2em;
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+/* Tarjeta principal del ranking */
+.ranking-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: hidden; /* Para que los bordes redondeados se apliquen bien */
+}
+
+/* Lista del ranking */
+.ranking-list {
+    list-style-type: none; /* Quitamos los números por defecto */
+    padding: 0;
+    margin: 0;
+}
+
+/* Fila de cada jugador */
+.player-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.player-row:last-child {
+    margin-bottom: 0;
+}
+
+.player-row:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.player-rank {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #6c757d;
+    width: 40px; /* Ancho fijo para el número/ícono */
+    text-align: center;
+}
+
+.player-name {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    text-align: left;
+    margin-left: 20px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.player-score {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* --- Estilos del Podio (Top 3) ✨ --- */
+.podium-first {
+    background: linear-gradient(135deg, #ffd700, #ffc400); /* Dorado */
+    color: #333;
+    border: 2px solid #ffc107;
+}
+.podium-second {
+    background: linear-gradient(135deg, #e0e0e0, #c0c0c0); /* Plateado */
+    color: #333;
+    border: 2px solid #adb5bd;
+}
+.podium-third {
+    background: linear-gradient(135deg, #cd7f32, #b87333); /* Bronce */
+    color: #fff;
+    border: 2px solid #a05d2c;
+}
+
+.podium-first .player-rank,
+.podium-second .player-rank,
+.podium-third .player-rank {
+    font-size: 1.8em; /* Íconos más grandes */
+}
+
+.podium-first .fa-trophy { color: #f2c100; text-shadow: 0 0 5px #00000030; }
+.podium-second .fa-medal { color: #a1a1a1; }
+.podium-third .fa-award { color: #a05d2c; }
+
+.podium-third .player-score,
+.podium-third .player-name {
+    color: #fff; /* Texto blanco para el bronce para mejor contraste */
+}
+
+
+/* --- AÑADE ESTE BLOQUE --- */
+.next-question-notice {
+    margin-top: 40px;
+    color: #6c757d;
+    font-size: 1.1em;
+    font-weight: 500;
+}

@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 40%;
+    background-color: #3B7DC3;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.sidebar img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+/* Confirm Container */
+.confirm-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f4f4f4;
+}
+
+.user-img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.confirm-container h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+.info-text {
+    text-align: center;
+    color: #4b5563;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Flash Messages */
+.flash-message {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.flash-message.success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.flash-message.danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.flash-message.info {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #93c5fd;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.875rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    font-family: inherit;
+    text-align: center;  /* Centrado para el código */
+}
+
+input:focus {
+    outline: none;
+    border-color: #3B7DC3;
+    box-shadow: 0 0 0 3px rgba(59, 125, 195, 0.1);
+}
+
+input.error {
+    border-color: #dc2626 !important;
+    background-color: #fee2e2;
+}
+
+.error-message {
+    display: block;
+    color: #dc2626;
+    font-size: 0.75rem;
+    margin-top: 0.375rem;
+    font-weight: 500;
+}
+
+/* Submit Button */
+.submit-btn,
+button[type="submit"] {
+    margin-top: 1rem;
+    padding: 14px;
+    background-color: #3B7DC3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.2s;
+    font-family: inherit;
+}
+
+.submit-btn:hover,
+button[type="submit"]:hover {
+    background-color: #2d5f99;
+}
+
+.submit-btn:disabled,
+button[type="submit"]:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Register Link */
+.register-link {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    text-align: center;
+    color: #4b5563;
+}
+
+.register-link a {
+    color: #3B7DC3;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Flash Message Animation */
+.flash-message {
+    animation: slideIn 0.3s ease-out;
+    cursor: pointer;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        height: auto;
+        overflow: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+
+    .sidebar img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .sidebar h1 {
+        font-size: 2rem;
+    }
+
+    .confirm-container {
+        width: 100%;
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+
+    .user-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .confirm-container h2 {
+        font-size: 1.5rem;
+    }
+
+    form {
+        max-width: 100%;
+    }
+
+    .flash-message {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar h1 {
+        font-size: 1.75rem;
+    }
+
+    .confirm-container h2 {
+        font-size: 1.25rem;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 0.875rem;
+    }
+
+    .submit-btn,
+    button[type="submit"] {
+        padding: 12px;
+        font-size: 0.875rem;
+    }
+}

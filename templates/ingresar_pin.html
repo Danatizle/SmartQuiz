@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar PIN</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ingresar_pin.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <main class="content">
+            <h1 class="site-name">SmartQuiz</h1>
+            <div class="pin-card">
+                <form action="{{ url_for('validar_pin') }}" method="post">
+                    <label for="pin_input">Ingresa el PIN a continuación:</label>
+                    <input type="text" id="pin_input" name="pin" placeholder="PIN" required>
+                    <button type="submit">ACCEDER</button>
+                </form>
+            </div>
+
+            <nav class="auth-links">
+                <a href="{{ url_for('registro') }}">Registrarse</a>
+                <span>|</span>
+                <a href="{{ url_for('login') }}">Iniciar Sesión</a>
+            </nav>
+        </main>
+
+        <footer class="page-footer">
+            <h2>Quiero crear mis propios cuestionarios</h2>
+            <nav class="footer-links">
+                <a href="#">Términos</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Avisos sobre Cookies</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>

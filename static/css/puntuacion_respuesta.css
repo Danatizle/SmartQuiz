@@ -1,0 +1,132 @@
+/* Estilos generales */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 600px; /* Ancho máximo para la tarjeta */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Número de pregunta */
+.question-number {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    display: inline-block;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Tarjeta de Feedback */
+.feedback-card {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out;
+}
+
+.response-status-text {
+    font-size: 1.2em;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.response-result {
+    font-size: 3.5em;
+    font-weight: 900;
+    margin: 10px 0 20px;
+    text-transform: uppercase;
+}
+
+/* Icono de feedback */
+.feedback-icon i {
+    font-size: 5em;
+    margin-bottom: 30px;
+}
+
+/* Información de racha y puntuación */
+.streak-info {
+    font-size: 1.3em;
+    color: #555;
+    margin-bottom: 15px;
+}
+.streak-info span {
+    font-weight: bold;
+    color: #007bff; /* Color SmartQuiz */
+}
+
+.score-gain {
+    background-color: #e0f7fa; /* Fondo suave para puntos */
+    color: #007bff; /* Color SmartQuiz para los puntos */
+    font-size: 2em;
+    font-weight: 900;
+    padding: 10px 25px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2);
+}
+
+.score-gain.negative {
+    background-color: #f8d7da; /* Fondo suave para 0 puntos o negativo */
+    color: #dc3545; /* Rojo para 0 puntos */
+    box-shadow: 0 2px 10px rgba(220, 53, 69, 0.2);
+}
+
+
+.current-rank {
+    font-size: 1.1em;
+    color: #6c757d;
+}
+.current-rank span {
+    font-weight: bold;
+    color: #007bff; /* Color SmartQuiz */
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA RESPUESTA CORRECTA --- */
+.feedback-card.correct {
+    background: linear-gradient(145deg, #e6ffee, #ffffff);
+    border: 2px solid #28a745; /* Verde de éxito */
+}
+.feedback-card.correct .response-result {
+    color: #28a745; /* Verde de éxito */
+}
+.feedback-card.correct .feedback-icon i {
+    color: #28a745; /* Icono verde */
+}
+.feedback-card.correct .score-gain {
+    background-color: #d4edda;
+    color: #28a745;
+}
+
+
+/* --- ESTILOS ESPECÍFICOS PARA RESPUESTA INCORRECTA --- */
+.feedback-card.incorrect {
+    background: linear-gradient(145deg, #fff2f2, #ffffff);
+    border: 2px solid #dc3545; /* Rojo de error */
+}
+.feedback-card.incorrect .response-result {
+    color: #dc3545; /* Rojo de error */
+}
+.feedback-card.incorrect .feedback-icon i {
+    color: #dc3545; /* Icono rojo */
+}
+.feedback-card.incorrect .score-gain {
+    background-color: #f8d7da; /* Fondo suave para 0 puntos */
+    color: #dc3545; /* Rojo para 0 puntos */
+}

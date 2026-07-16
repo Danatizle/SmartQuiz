@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unirse al Juego - SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/unirse.css') }}">
+</head>
+<body>
+  <div class="container">
+        <div class="logo-header">
+      <div class="logo">Smart?uiz</div>
+      <div class="logo-subtitle">¡Únete y demuestra lo que sabes!</div>
+    </div>
+
+        <div class="card">
+            <div id="stepPin" class="step">
+        <div class="step-indicator">
+          <div class="step-dot active"></div>
+          <div class="step-dot"></div>
+        </div>
+
+        <h2 class="form-title">Ingresa el PIN</h2>
+        <p class="form-subtitle">Obtén el código de tu profesor</p>
+
+        <div class="input-group">
+          <label class="input-label">PIN del juego</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="pinInput"
+              class="input-field pin-input"
+              placeholder="000000"
+              maxlength="7"
+              autocomplete="off"
+            >
+            <div class="error-message" id="pinError">PIN inválido o no existe</div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btnVerificarPin" onclick="verificarPin()" >
+          Continuar
+        </button>
+
+       <button class="btn-back" onclick="window.location.href='{{ url_for('inicioAlumno') }}'">
+            Volver al inicio
+        </button>
+
+      </div>
+
+            <div id="stepNombre" class="step hidden">
+        <div class="step-indicator">
+          <div class="step-dot"></div>
+          <div class="step-dot active"></div>
+        </div>
+
+        <h2 class="form-title">¿Cómo te llamas?</h2>
+        <p class="form-subtitle">Ingresa tu nombre para unirte</p>
+
+        <div class="input-group">
+          <label class="input-label">Tu nombre</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="nombreInput"
+              class="input-field"
+              placeholder="Ej: Juan Pérez"
+              maxlength="30"
+              autocomplete="off"
+            >
+            <div class="error-message" id="nombreError">Por favor ingresa tu nombre</div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btnUnirse" onclick="unirseAlJuego()">
+          Unirse al juego
+        </button>
+        <button class="btn-secondary" onclick="volverAPaso1()">
+          ← Cambiar PIN
+        </button>
+      </div>
+
+        <div id="stepEspera" class="step waiting-screen hidden">
+            <div class="success-icon"></div>
+            <h2 class="waiting-title">¡Estás dentro!</h2>
+            <p class="waiting-subtitle">Esperando a que el profesor inicie el juego...</p>
+
+            <div class="player-info">
+              <div class="player-info-label">Tu nombre</div>
+              <div class="player-info-value" id="displayNombre">-</div>
+            </div>
+
+            <div class="player-info">
+              <div class="player-info-label">PIN del juego</div>
+              <div class="player-info-value" id="displayPin">-</div>
+            </div>
+
+            <div class="spinner"></div>
+        </div>
+    </div>
+  </div>
+
+    <script src="{{ url_for('static', filename='js/unirse.js') }}"></script>
+</body>
+</html>

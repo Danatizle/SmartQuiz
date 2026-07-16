@@ -1,0 +1,319 @@
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .logo-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      font-size: 48px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+    }
+
+    .logo-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .step-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e0e7ff;
+      transition: all 0.3s ease;
+    }
+
+    .step-dot.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      width: 30px;
+    }
+
+    .form-title {
+      font-size: 28px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .form-subtitle {
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    .input-group {
+      margin-bottom: 25px;
+    }
+
+    .input-label {
+      display: block;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid #e0e7ff;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .input-field.error {
+      border-color: #ef4444;
+    }
+
+    .pin-input {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 13px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+    }
+
+    .btn-primary:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: #667eea;
+      border: 2px solid #e0e7ff;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 12px;
+    }
+
+    .btn-secondary:hover {
+      background: #f5f7fa;
+      border-color: #667eea;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Pantalla de espera */
+    .waiting-screen {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      border: 4px solid #e0e7ff;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .waiting-title {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .waiting-subtitle {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    /* Success check animation */
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: scaleIn 0.5s ease;
+    }
+
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .success-icon::after {
+      content: '✓';
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .player-info {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    .player-info-label {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 5px;
+    }
+
+    .player-info-value {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      .logo {
+        font-size: 36px;
+      }
+
+      .form-title {
+        font-size: 24px;
+      }
+
+      .pin-input {
+        font-size: 24px;
+        letter-spacing: 5px;
+      }
+    }
+
+    .btn-back {
+     position: fixed;
+     top: 25px;
+     left: 25px;
+     background: white;
+     color: #4f46e5;
+     border: none;
+     border-radius: 40px;
+     padding: 14px 26px;
+     font-weight: 700;
+     font-size: 18px;
+     cursor: pointer;
+     box-shadow: 0 8px 24px rgba(79,70,229,0.3);
+     transition: all 0.3s ease;
+     z-index: 1000;
+    }
+
+    .btn-back:hover {
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     color: white;
+     transform: scale(1.05);
+     box-shadow: 0 10px 28px rgba(79, 70, 229, 0.4);
+    }

@@ -1,0 +1,488 @@
+/* ============================================
+   VARIABLES DE COLOR
+   ============================================ */
+:root {
+    --color-primary: #7c68ee;
+    --color-primary-dark: #6952d6;
+    --color-primary-light: #9b8df5;
+    --color-accent-pink: #ff6b9d;
+    --color-accent-yellow: #ffc857;
+    --color-accent-green: #4ade80;
+    --color-accent-blue: #3b82f6;
+    --color-accent-orange: #f97316;
+    --color-bg: #f8f7ff;
+    --color-card: #ffffff;
+    --color-text-dark: #2d1b4e;
+    --color-text-medium: #64748b;
+    --color-text-light: #94a3b8;
+    --color-border: #e9e7f5;
+    --shadow-md: 0 4px 12px -2px rgba(124, 104, 238, 0.15);
+    --shadow-lg: 0 20px 25px -5px rgba(124, 104, 238, 0.2);
+}
+
+/* ============================================
+   PANTALLA DE RESULTADOS
+   ============================================ */
+.results-screen {
+    background: linear-gradient(135deg, var(--color-bg) 0%, #ffffff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    /* 👇 Eliminamos width/max-width innecesarios */
+    /* Solo mantenemos el padding y el fondo */
+}
+
+/* 👇 Añadimos un contenedor interno para controlar el ancho máximo */
+.results-wrapper {
+    max-width: 600px;
+    width: 100%;
+    animation: slideUp 0.6s ease-out;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.results-content {
+    max-width: 600px;
+    width: 100%;
+    animation: slideUp 0.6s ease-out;
+    /* 👇 Aseguramos que el contenido no crezca más allá de su tamaño natural */
+    box-sizing: border-box;
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   CONFETI
+   ============================================ */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--color-accent-yellow);
+    top: -10px;
+    animation: confettiFall 3s linear infinite;
+}
+
+.confetti:nth-child(1) { left: 10%; background: var(--color-accent-pink); animation-delay: 0s; }
+.confetti:nth-child(2) { left: 20%; background: var(--color-accent-yellow); animation-delay: 0.2s; }
+.confetti:nth-child(3) { left: 30%; background: var(--color-accent-green); animation-delay: 0.4s; }
+.confetti:nth-child(4) { left: 40%; background: var(--color-accent-blue); animation-delay: 0.6s; }
+.confetti:nth-child(5) { left: 50%; background: var(--color-primary); animation-delay: 0.8s; }
+.confetti:nth-child(6) { left: 60%; background: var(--color-accent-orange); animation-delay: 1s; }
+.confetti:nth-child(7) { left: 70%; background: var(--color-accent-pink); animation-delay: 1.2s; }
+.confetti:nth-child(8) { left: 80%; background: var(--color-accent-yellow); animation-delay: 1.4s; }
+.confetti:nth-child(9) { left: 90%; background: var(--color-accent-green); animation-delay: 1.6s; }
+.confetti:nth-child(10) { left: 95%; background: var(--color-accent-blue); animation-delay: 1.8s; }
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+}
+
+.success-circle {
+    stroke: var(--color-accent-green);
+    stroke-width: 2;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: drawCircle 0.6s ease-out 0.3s forwards;
+}
+
+.success-check {
+    stroke: var(--color-accent-green);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: drawCheck 0.4s ease-out 0.9s forwards;
+}
+
+@keyframes drawCircle {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+}
+
+.final-title-animated {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 10px 0;
+ animation: titlePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; } /* Solo cambia opacidad, no escala */
+}
+
+.final-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-medium);
+    margin: 0;
+}
+
+/* ============================================
+   TARJETA DE ESTADÍSTICAS
+   ============================================ */
+.results-card {
+    background: var(--color-card);
+    border-radius: 20px;
+    padding: 30px; /* 👈 Mantenemos el padding original */
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--color-border);
+    margin-bottom: 30px;
+    /* 👇 Añadimos esto para asegurar que el contenido no se "salga" */
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 👈 Reducimos el gap para que los elementos estén más juntos */
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 30px; /* 👈 Aumentamos el padding horizontal para evitar que se "salgan" */
+    background: var(--color-bg); /* Mantenemos el fondo gris claro */
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: statAppear 0.5s ease-out backwards;
+    width: 100%; /* 👈 Aseguramos que ocupe todo el ancho disponible dentro de la tarjeta */
+    box-sizing: border-box; /* 👈 Evitamos que el padding aumente el tamaño total */
+}
+
+/* En pantallas grandes, ajustamos el padding para que no se vea tan apretado */
+@media (min-width: 769px) {
+    .stat-item {
+        padding: 25px 40px; /* 👈 Más padding en laptops */
+    }
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.2s; }
+.stat-item:nth-child(2) { animation-delay: 0.4s; }
+.stat-item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes statAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.stat-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+}
+
+.correct-answers {
+    color: var(--color-accent-green);
+}
+
+/* Barra de progreso */
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-accent-green) 0%, var(--color-accent-blue) 100%);
+    border-radius: 10px;
+    width: 0;
+    transition: width 1s ease-out 0.8s;
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+.final-buttons {
+    text-align: center;
+}
+
+.btn-primary-results {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary-results:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px -5px rgba(124, 104, 238, 0.4);
+}
+
+.btn-primary-results:active {
+    transform: translateY(-1px);
+}
+
+/* ... (Mantén aquí tus variables de color y estilos base) ... */
+
+/* ============================================
+    RESPONSIVE AJUSTADO: Pantalla de Resultados
+    ============================================ */
+
+@media (min-width: 769px) {
+    .results-wrapper { /* 👈 Cambiamos el selector aquí */
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .final-title-animated {
+        font-size: 2.5rem;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+
+    .stat-value {
+        font-size: 1.6rem;
+    }
+
+    .stat-item {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        padding: 25px;
+        width: 100%;
+    }
+
+    .stat-icon {
+        margin-bottom: 0;
+    }
+
+    .stat-content {
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+
+/* --- AJUSTES PARA MÓVILES Y TABLETAS (481px a 768px) --- */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Mantenemos la tarjeta centrada */
+    .final-title-animated { font-size: 2.2rem; }
+    .results-card { padding: 25px; }
+
+    /* Forzamos las estadísticas a apilarse verticalmente y centrarse */
+    .stat-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 20px 15px;
+    }
+    .stat-icon { margin-bottom: 10px; }
+    .stat-content { align-items: center; }
+}
+
+
+/* --- AJUSTES PARA MÓVILES PEQUEÑOS (Hasta 480px) --- */
+@media (max-width: 480px) {
+    /* Reducción general de tamaño y espaciado */
+    .results-screen { padding: 15px; }
+    .results-header { margin-bottom: 30px; }
+    .success-icon { width: 60px; height: 60px; margin-bottom: 15px; }
+    .final-title-animated { font-size: 1.8rem; }
+    .final-subtitle { font-size: 1rem; }
+    .results-card { padding: 15px; margin-bottom: 25px; }
+    .main-stats { gap: 15px; }
+    .stat-item { padding: 15px; }
+    .stat-icon { width: 45px; height: 45px; font-size: 2rem; }
+    .stat-value { font-size: 1.5rem; }
+
+    /* Botón de acción */
+    .btn-primary-results {
+        padding: 14px 30px;
+        font-size: 1rem;
+        width: 100%; /* El botón ocupa todo el ancho disponible */
+        max-width: 250px;
+    }
+}
+
+/* ============================================
+   BOTÓN "VOLVER AL INICIO" EN ESQUINA SUPERIOR IZQUIERDA (LAPTOPS)
+   ============================================ */
+
+.btn-back-to-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    display: none; /* Por defecto, oculto en móviles */
+}
+
+/* Mostrar el botón solo en pantallas de laptop (769px+) */
+@media (min-width: 769px) {
+    .btn-back-to-home {
+        display: block;
+    }
+}
+
+/* ============================================
+   BOTONES "VOLVER AL INICIO" - VERSIONES MÓVIL Y ESCRITORIO
+   ============================================ */
+
+/* Estilo base compartido */
+.btn-primary-results {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+/* Versión para móviles (centrada, más grande) */
+.btn-mobile {
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 250px;
+}
+
+@media (max-width: 768px) {
+    .btn-mobile {
+        display: inline-flex;
+    }
+}
+
+/* Versión para laptops (esquina superior izquierda, más compacta) */
+.btn-desktop {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Ocultar el botón de escritorio en móviles */
+@media (max-width: 768px) {
+    .btn-desktop {
+        display: none !important;
+    }
+}
+
+/* Mostrar el botón de escritorio solo en laptops (769px+) */
+@media (min-width: 769px) {
+    .btn-desktop {
+        display: inline-flex;
+    }
+    .btn-mobile {
+        display: none !important;
+    }
+}
+
+/* Efectos de hover (solo para escritorio, ya que móviles no tienen hover) */
+.btn-primary-results:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px -5px rgba(124, 104, 238, 0.4);
+}
+
+.btn-primary-results:active {
+    transform: translateY(-1px);
+}

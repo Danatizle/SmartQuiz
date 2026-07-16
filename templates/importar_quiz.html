@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar Quiz - Smartquiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicioProfesores.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/importarQuiz.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="container header-nav">
+            <div class="nav-left-group">
+                <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Smartquiz Logo" class="site-logo">
+            </div>
+            <div class="nav-right-group">
+                 <div class="nav-links">
+                    <a href="{{ url_for('inicioProfesores') }}" class="nav-button active">Mis Quizzes</a>
+                    <a href="{{ url_for('explorar_quizzes') }}" class="nav-button">Explorar</a>
+                </div>
+                <div class="profile-container">
+                    <img src="{{ url_for('static', filename='img/avatar_placeholder.png') }}" alt="Avatar del usuario" class="user-avatar" id="avatar-button">
+                    <div class="profile-dropdown hidden" id="profile-menu">
+                        <a href="{{ url_for('miPerfil') }}">Mi perfil</a>
+                        <a href="{{ url_for('logout') }}">Salir</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container page-content-import">
+
+        <div class="import-layout">
+            <div class="upload-card">
+                <h2>Importar Cuestionario</h2>
+                <p>Sube tu archivo `.xlsx` para crear un nuevo quiz al instante.</p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    <div class="flash-container">
+                    {% for category, message in messages %}
+                      <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+
+                <form action="{{ url_for('api_importar_quiz') }}" method="POST" enctype="multipart/form-data" id="upload-form">
+
+                    <div class="form-group">
+                        <label for="titulo">Título del Quiz *</label>
+                        <input type="text" id="titulo" name="titulo" placeholder="Ej: Examen Parcial de Historia" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file">Archivo Excel (.xlsx) *</label>
+
+                        <div class="file-upload-container">
+                            <input type="file" id="file" name="file" accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                            <label for="file" class="custom-file-label" id="file-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                <span id="file-label-text">Seleccionar archivo</span>
+                            </label>
+                        </div>
+
+                        <div class="file-status hidden" id="file-status">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="file-status-text">Cargando archivo...</span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <a href="{{ url_for('descargar_plantilla_excel') }}" class="btn-download-template">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Descargar Plantilla
+                        </a>
+                        <button type="submit" class="btn-submit-excel" id="btn-submit-excel">
+                            <span class="btn-text">Crear Cuestionario</span>
+                            <div class="loader hidden"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="instructions-card">
+                <h3>Instrucciones de la Plantilla</h3>
+                <p>Tu archivo Excel debe tener una hoja llamada <strong>"Preguntas"</strong> y las siguientes columnas obligatorias:</p>
+
+                <ul class="instructions-list">
+                    <li>
+                        <strong>pregunta_texto</strong>
+                        <span>(Obligatorio) - El texto de la pregunta.</span>
+                    </li>
+                    <li>
+                        <strong>tipo_pregunta</strong>
+                        <span>(Obligatorio) - Escribe: <code>opcion_multiple</code> o <code>verdadero_falso</code>.</span>
+                    </li>
+                    <li>
+                        <strong>tiempo_limite_segundos</strong>
+                        <span>(Obligatorio) - El tiempo en segundos (20, 30, 60 o 120) (Ej: <code>20</code>).</span>
+                    </li>
+                    <li>
+                        <strong>puntos</strong>
+                        <span>(Obligatorio) - Escribe: <code>Estándar</code>, <code>Puntos dobles</code> o <code>Sin puntos</code>.</span>
+                    </li>
+                    <li>
+                        <strong>opcion_rpta</strong>
+                        <span>(Obligatorio) - Escribe: <code>Selección simple</code> o <code>Selección múltiple</code>.</span>
+                    </li>
+                    <li>
+                        <strong>url_media (opcional)</strong>
+                        <span>(Opcional) - Pega la URL a una imagen. Déjalo vacío si no aplica.</span>
+                    </li>
+                    <li>
+                        <strong>respuesta_[1-4]_texto</strong>
+                        <span>(Obligatorio) - El texto de la respuesta. (Ej: <code>Lima</code>).</span>
+                    </li>
+                    <li>
+                        <strong>respuesta_[1-4]_es_correcta</strong>
+                        <span>(Obligatorio) - Escribe: <code>VERDADERO</code> o <code>FALSO</code>.</span>
+                    </li>
+                </ul>
+                <p><strong>Importante:</strong> Para preguntas de tipo `verdadero_falso`, usa `Verdadero` y `Falso` como `respuesta_1_texto` y `respuesta_2_texto`.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/inicioProfesores.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/importarQuiz.js') }}"></script>
+</body>
+</html>

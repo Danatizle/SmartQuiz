@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podio de Ganadores - SmartQuiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* --- ESTILOS BÁSICOS --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #4a4a4a;
+            margin-bottom: 24px;
+        }
+
+        /* --- ESTILOS DEL PODIO --- */
+        .podium-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 350px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .podium-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            width: 150px;
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Segundo Puesto (Plata) */
+        .podium-item.second {
+            height: 250px;
+            background-color: #e0e0e0;
+            order: 2;
+        }
+
+        /* Primer Puesto (Oro) */
+        .podium-item.first {
+            height: 300px;
+            background-color: #ffd700;
+            order: 1;
+            margin: 0 -10px; /* Superpone ligeramente */
+            transform: scale(1.05); /* Destaca al ganador */
+        }
+
+        /* Tercer Puesto (Bronce) */
+        .podium-item.third {
+            height: 200px;
+            background-color: #e6c5a6;
+            order: 3;
+        }
+
+        .podium-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .podium-icon .fa-trophy {
+            color: rgba(0,0,0,0.7);
+        }
+        .first .fa-trophy { color: #af8900; }
+        .second .fa-trophy { color: #757575; }
+        .third .fa-trophy { color: #a05a2c; }
+
+        .podium-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #000;
+            word-break: break-all;
+        }
+
+        .podium-score {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .podium-rank {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        /* Estilo del botón */
+        .btn-regresar {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #0d6efd;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn-regresar:hover {
+            background-color: #0b5ed7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¡Fin del Juego!</h1>
+        <h3>Podio de Ganadores</h3>
+
+        <div class="podium-container">
+            <div class="podium-item second">
+                <div class="podium-icon"><i class="fas fa-trophy"></i></div>
+                <div class="podium-name" id="winner-2-name">Cargando...</div>
+                <div class="podium-score" id="winner-2-score">... pts</div>
+                <div class="podium-rank">2</div>
+            </div>
+
+            <div class="podium-item first">
+                <div class="podium-icon"><i class="fas fa-trophy"></i></div>
+                <div class="podium-name" id="winner-1-name">Cargando...</div>
+                <div class="podium-score" id="winner-1-score">... pts</div>
+                <div class="podium-rank">1</div>
+            </div>
+
+            <div class="podium-item third">
+                <div class="podium-icon"><i class="fas fa-trophy"></i></div>
+                <div class="podium-name" id="winner-3-name">Cargando...</div>
+                <div class="podium-score" id="winner-3-score">... pts</div>
+                <div class="podium-rank">3</div>
+            </div>
+        </div>
+
+        <a href="{{ url_for('inicioAlumno') }}" class="btn-regresar">Volver al Inicio</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Obtener el PIN de la URL
+            const params = new URLSearchParams(window.location.search);
+            const pin = params.get('pin');
+
+            if (pin) {
+                // 2. Llamar a la API que creamos
+                fetch(`/api/partida/${pin}/podio`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error al cargar el podio.');
+                        }
+                        return response.json();
+                    })
+                    .then(podio => {
+
+                        // Primer Puesto
+                        document.getElementById('winner-1-name').textContent = podio[0].nombre_usuario_partida;
+                        document.getElementById('winner-1-score').textContent = podio[0].puntaje_total + ' pts';
+
+                        // Segundo Puesto
+                        document.getElementById('winner-2-name').textContent = podio[1].nombre_usuario_partida;
+                        document.getElementById('winner-2-score').textContent = podio[1].puntaje_total + ' pts';
+
+                        // Tercer Puesto
+                        document.getElementById('winner-3-name').textContent = podio[2].nombre_usuario_partida;
+                        document.getElementById('winner-3-score').textContent = podio[2].puntaje_total + ' pts';
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        document.getElementById('winner-1-name').textContent = "Error";
+                        document.getElementById('winner-2-name').textContent = "Error";
+                        document.getElementById('winner-3-name').textContent = "Error";
+                    });
+            } else {
+                console.error("No se encontró un PIN en la URL.");
+                alert("Error: No se pudo identificar la partida.");
+            }
+        });
+    </script>
+
+</body>
+</html>

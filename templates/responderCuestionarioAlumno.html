@@ -1,0 +1,78 @@
+<!--responderCuestionarioAlumno.html-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugando | SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/juego_base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/juego_alumno.css') }}">
+</head>
+<body>
+    <div id="loadingScreen" class="game-screen active">
+        <div class="spinner"></div>
+        <h1>Conectando...</h1>
+    </div>
+
+    <div id="questionScreen" class="game-screen">
+        <div class="question-header">
+            <span id="questionCounter">1 / 10</span>
+            <div class="timer-container">
+                <div id="timer" class="timer">30</div>
+            </div>
+        </div>
+        <div class="question-body">
+            <h2 id="questionText">¿Cuál es la capital de Perú?</h2>
+            <img id="questionImage" src="" alt="Imagen de la pregunta" class="hidden">
+        </div>
+        <div id="answerOptions" class="answer-options">
+            </div>
+    </div>
+
+    <div id="feedbackScreen" class="game-screen">
+        <div class="feedback-content">
+            <h1 id="feedbackText">¡Correcto!</h1>
+            <p class="points-display">+ <span id="pointsEarned">950</span> puntos</p>
+            <div class="waiting-next">Esperando al profesor...</div>
+        </div>
+    </div>
+
+    <div id="endScreen" class="game-screen final-view">
+     <h1 class="final-title">¡Juego terminado!</h1>
+
+    <div id="podium" class="podium-container"></div>
+
+    <div class="rewards-container hidden" id="rewardsContainer">
+    <h3>Recompensas</h3>
+    <ul id="rewardsList" class="rewards-list"></ul>
+    </div>
+
+    <div class="my-rank-container" id="myRankContainer">
+        <h4>Tu resultado</h4>
+        <div class="my-rank-item">
+            <span id="myRankPosition">Puesto: ?</span>
+            <span id="myRankName">---</span>
+            <span id="myRankScore">? pts</span>
+         </div>
+     </div>
+
+         <div class="full-leaderboard-container" id="fullLeaderboardContainer">
+     <h4>Marcador Completo</h4>
+     <div id="fullLeaderboardList" class="full-leaderboard-list">
+    </div>
+     </div>
+
+     <div class="final-buttons">
+        <a href="{{ url_for('inicioAlumno') }}" class="btn-primary">Finalizar y Salir</a>
+     </div>
+</div>
+
+    <script>
+
+        const PIN = "{{ pin }}";
+        const NICKNAME = "{{ nickname }}";
+
+    </script>
+    <script src="{{ url_for('static', filename='js/juego_alumno.js') }}"></script>
+</body>
+</html>

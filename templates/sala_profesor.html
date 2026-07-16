@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sala de Espera - SmartQuiz</title>
+
+    <!-- Asegúrate que el nombre del CSS coincida con tu archivo real -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/salaEsperaProfesor.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Panel Izquierdo: PIN y QR -->
+
+        <div class="panel panel-unirse">
+
+            <h2>Unirse al Juego</h2>
+
+            <div class="qr-container" id="qrContainer">
+
+                <div class="qr-loading">Generando código QR...</div>
+
+            </div>
+
+            <div class="pin-container">
+
+                <div class="pin-label">PIN de juego</div>
+
+                <div class="pin-numero" id="pinDisplay">{{ pin }}</div>
+
+            </div>
+
+            <button class="btn-salir">Salir de la Sala</button>
+
+        </div>
+
+
+
+        <!-- Panel Central: Crear Grupos y Empezar -->
+
+        <div class="panel panel-centro">
+
+            <div class="mensaje-principal">
+
+                <h1>¿Estamos listos?</h1>
+
+                <p>Configura los equipos y arrastra a los jugadores.</p>
+
+            </div>
+
+
+
+            <div class="grupos-container" id="gruposContainer">
+
+                 <div class="grupos-placeholder">
+
+                    <p>Usa el botón "Configurar Grupos" para empezar.</p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="botones-accion">
+
+                <button class="btn-config" id="btnConfigGrupos">Configurar Grupos</button>
+
+                <button class="btn-empezar" id="btnEmpezar" disabled>Empezar el juego</button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Panel Derecho: Lista de Participantes -->
+
+        <div class="panel panel-participantes">
+
+            <h2>Participantes</h2>
+
+            <div class="contador-participantes">
+
+                <span id="contadorParticipantes">0 jugadores conectados</span>
+
+            </div>
+
+            <div class="lista-participantes" id="listaParticipantes">
+
+                <div class="empty-state">
+
+                    <div class="empty-state-icon">👥</div>
+
+                    <p>Esperando participantes...</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal para configurar los grupos -->
+
+    <div id="configuracionGruposModal" class="modal-overlay hidden">
+
+        <div class="modal-content">
+
+            <h3>Configurar Equipos</h3>
+
+            <div class="form-group">
+
+                <label for="max-jugadores-grupo">Máximo de jugadores por equipo:</label>
+
+                <input type="number" id="max-jugadores-grupo" value="5" min="1">
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button id="cancelarConfigGrupos" class="btn-modal-cancel">Cancelar</button>
+
+                <button id="crearGruposBtn" class="btn-modal-confirm">Crear Equipos</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ✅ --- NUEVO: Modal Genérico para Confirmaciones y Alertas --- -->
+
+    <div id="customAlertModal" class="modal-overlay hidden">
+
+        <div class="modal-content custom-alert-modal">
+
+            <h3 id="customAlertTitle">Confirmación</h3>
+
+            <p id="customAlertMessage">¿Estás seguro?</p>
+
+            <div class="modal-actions custom-alert-actions">
+
+                <!-- Botones para confirmación -->
+
+                <button id="customAlertCancelBtn" class="btn-modal-cancel">Cancelar</button>
+
+                <button id="customAlertConfirmBtn" class="btn-modal-confirm">Aceptar</button>
+
+                <!-- Botón solo para alertas (inicialmente oculto) -->
+
+                <button id="customAlertOkBtn" class="btn-modal-confirm hidden">OK</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CDN para generar el código QR -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Tu script de lógica -->
+
+    <script src="{{ url_for('static', filename='js/sala_profesor.js') }}"></script>
+
+</body>
+
+</html>

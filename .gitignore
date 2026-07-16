@@ -1,0 +1,33 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Variables de entorno (¡NUNCA subir credenciales!)
+.env
+
+# Archivos subidos por usuarios
+uploads/
+static/uploads/
+
+# Bases de datos locales
+*.sqlite3
+*.db
+
+# Logs
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/

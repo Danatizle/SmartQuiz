@@ -1,0 +1,257 @@
+
+.page-content-explore {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+/* --- Cabecera de Explorar --- */
+.explore-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.explore-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin: 0 0 0.5rem 0;
+}
+
+.explore-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* --- Barra de Búsqueda --- */
+.search-bar-container {
+    margin-bottom: 2.5rem;
+}
+
+.search-wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50px; /* Forma de píldora */
+    font-size: 1rem;
+    background: var(--card-bg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    color: var(--text-color);
+    box-sizing: border-box; /* Asegura que el padding no rompa el width */
+}
+
+.search-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    /* Sombra de foco sutil usando el color primario */
+    box-shadow: 0 0 0 4px rgba(126, 87, 194, 0.1), var(--shadow-md);
+}
+
+.search-wrapper input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* --- Grid de Quizzes (Estilo de Tarjeta) --- */
+.quiz-grid-explore {
+    display: grid;
+    /* 3 columnas, igual que .quiz-grid de inicioAlumno */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.quiz-card-explore {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow-color); /* Sombra sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+}
+
+.quiz-card-explore:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.quiz-card-image {
+    height: 160px; /* Un poco más alta que la de inicioAlumno */
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Color de fondo si no hay imagen */
+.quiz-card-image:not([style*="url"]) {
+   background: linear-gradient(135deg, var(--primary-color) 0%, #b39ddb 100%);
+}
+
+.quiz-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-card-content h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.quiz-creator {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* --- Meta Info (Preguntas, Jugado) --- */
+.quiz-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto; /* Empuja esto al fondo de la tarjeta */
+}
+
+.quiz-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quiz-meta svg {
+    stroke: var(--primary-color);
+    flex-shrink: 0;
+}
+
+/* --- Botón de Acción (Jugar) --- */
+.quiz-actions {
+    display: grid; /* Para que el botón ocupe todo el ancho */
+    margin-top: 1.25rem;
+}
+
+/* --- Botón Jugar Moderno --- */
+.btn-play {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(126, 87, 194, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Brillo animado */
+.btn-play::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.7s ease;
+}
+
+.btn-play:hover::before {
+    left: 125%;
+}
+
+/* Efectos hover y clic */
+.btn-play:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(126, 87, 194, 0.35);
+}
+
+.btn-play:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(126, 87, 194, 0.3);
+}
+
+
+
+.btn-play:hover::before {
+    /* El brillo se mueve de izquierda a derecha */
+    left: 120%;
+}
+
+/* --- Mensaje de Sin Resultados --- */
+.no-results-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.no-results-message h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.no-results-message p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+
+/* --- RESPONSIVE (Igual que inicioAlumno.css) --- */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .quiz-grid-explore {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+    .page-content-explore {
+        padding-top: 2rem;
+    }
+    
+    .explore-header h1 {
+        font-size: 2rem;
+    }
+
+    .quiz-grid-explore {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Quizzes - Smartquiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicioProfesores.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="container header-nav">
+            <div class="nav-left-group">
+                <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Smartquiz Logo" class="site-logo">
+            </div>
+            <div class="nav-right-group">
+                <div class="nav-links">
+                    <a href="{{ url_for('explorar_quizzes') }}" class="nav-button {% if current_page == 'explorar' %}active{% endif %}">Explorar</a>
+                    <a href="{{ url_for('inicioProfesores') }}" class="nav-button {% if current_page == 'mis_quizzes' %}active{% endif %}">Mis Quizzes</a>
+                </div>
+                <div class="profile-container">
+                    <img src="{{ url_for('static', filename='img/avatar_placeholder.png') }}" alt="Avatar del usuario" class="user-avatar" id="avatar-button">
+                    <div class="profile-dropdown hidden" id="profile-menu">
+                        <a href="{{ url_for('miPerfil') }}">Mi perfil</a>
+                        <a href="{{ url_for('logout') }}">Salir</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="flash-message-container" class="flash-message-container"></div>
+
+    <main class="container page-content">
+        <aside class="sidebar">
+            <nav class="side-nav">
+                <a href="#" class="side-nav-link active" data-view="activos">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                    Mis Quizzes
+                </a>
+
+                <a href="#" class="side-nav-link" data-view="papelera">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    Papelera
+                </a>
+            </nav>
+        </aside>
+
+        <div class="main-content-area">
+            <section class="page-header">
+                <div>
+                    <h1 id="page-title" class="page-title">Mis Quizzes</h1>
+                    <p class="page-subtitle">Bienvenido, <strong>{{ current_user.nombre_completo }}</strong>.</p>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+
+                    <a href="{{ url_for('crear_cuestionario') }}" class="btn-new-repo" id="new-repo-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        Nuevo Quiz
+                    </a>
+
+                    <a href="{{ url_for('importar_quiz_form') }}" class="btn-new-repo" style="background-color: #26C281; border-color: #26C281;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        Importar
+                    </a>
+
+                </div>
+            </section>
+            <section class="search-section">
+                <div class="search-bar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" placeholder="Buscar en tus quizzes...">
+                </div>
+            </section>
+            <section class="repository-grid">
+                <div id="quiz-list-container" class="grid-container">
+                    </div>
+                <div id="empty-message" class="empty-state-message hidden">
+                    <p>Aún no has creado ningún quiz.</p>
+                    <p>Haz clic en "Nuevo Quiz" para empezar.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="confirm-trash-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 id="trash-modal-title">Mover a la papelera</h3>
+            <p id="trash-modal-message">
+                Cualquier informe o actividad en curso no se verá afectado. Tendrás que eliminarlos por separado.
+            </p>
+            <div class="modal-actions">
+                <button id="cancel-trash-btn" class="btn-cancel">Cancelar</button>
+                <button id="confirm-trash-btn" class="btn-confirm-trash">Mover a la papelera</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/inicioProfesores.js') }}"></script>
+</body>
+</html>

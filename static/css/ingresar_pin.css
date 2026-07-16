@@ -1,0 +1,179 @@
+/* Estilos generales */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Un tipo de letra similar al de la imagen */
+    background-color: #f0f2f5; /* Un fondo gris muy claro */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Contenedor principal para alinear todo verticalmente */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    max-width: 1200px; /* Limita el ancho para que no se estire demasiado en pantallas grandes */
+}
+
+.page-header {
+    padding: 20px;
+    text-align: left;
+    color: #888;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* Contenido central */
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.site-name {
+    font-weight: bold;
+    font-size: 32px; /* Un poco más grande */
+    margin-bottom: 30px; /* Más espacio */
+    color: #007bff; /* Color azul primario de SmartQuiz */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Ligera sombra para destacar */
+}
+
+/* Tarjeta para ingresar el PIN */
+.pin-card {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 40px; /* Más padding */
+    border: 1px solid #e0e0e0; /* Borde más suave */
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    width: 350px; /* Un poco más ancho */
+    max-width: 90%; /* Asegura que no desborde en móviles */
+}
+
+/* Busca esta regla en tu CSS */
+.pin-card label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    text-align: center; /* ¡Este es el cambio! */
+}
+
+.pin-card input[type="text"] {
+    width: calc(100% - 24px); /* Ajusta el ancho por el padding */
+    padding: 12px;
+    border: 1px solid #ced4da; /* Borde suave */
+    background-color: #f8f9fa; /* Fondo ligeramente gris para el input */
+    border-radius: 8px; /* Bordes redondeados en input */
+    box-sizing: border-box;
+    margin-bottom: 25px; /* Más espacio */
+    text-align: center; /* Centrar el texto en el input */
+    font-size: 18px;
+    color: #495057;
+    transition: all 0.2s ease-in-out;
+}
+
+.pin-card input[type="text"]::placeholder {
+    color: #a0a0a0;
+}
+
+.pin-card input[type="text"]:focus {
+    border-color: #007bff; /* Borde azul al enfocar */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+    background-color: #ffffff;
+}
+
+.pin-card button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #007bff; /* Azul vibrante de SmartQuiz */
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+.pin-card button:hover {
+    background-color: #0056b3; /* Un azul más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Ligero efecto 3D */
+}
+
+.pin-card button:active {
+    transform: translateY(0);
+}
+
+/* Enlaces de autenticación (Registrarse / Iniciar Sesión) */
+.auth-links {
+    margin-top: 30px; /* Más espacio */
+    font-size: 0.95em;
+}
+
+.auth-links a {
+    color: #007bff; /* Azul para los enlaces */
+    text-decoration: none;
+    margin: 0 8px;
+    transition: color 0.2s ease;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.auth-links span {
+    color: #ccc;
+    font-weight: 300;
+}
+
+/* Pie de página */
+.page-footer {
+    padding: 40px 20px;
+    background-color: #f0f2f5; /* Fondo del pie de página */
+    border-top: 1px solid #e0e0e0; /* Borde superior */
+    color: #6c757d;
+}
+
+.page-footer h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #495057;
+}
+
+.footer-links a {
+    color: #6c757d;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 13px;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+
+/* Estilos para el nuevo enlace en el pie de página */
+.page-footer h2 a {
+    text-decoration: none; /* Le quita el subrayado */
+    color: inherit; /* Hereda el color del texto de su elemento padre (h2) */
+    transition: color 0.2s ease;
+}
+
+.page-footer h2 a:hover {
+    color: #007bff; /* Cambia a azul al pasar el ratón por encima */
+}

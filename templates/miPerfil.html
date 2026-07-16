@@ -1,0 +1,276 @@
+{% extends 'layout.html' %}
+
+{% block title %}Mi Perfil - Smartquiz{% endblock %}
+
+{# Metemos los estilos CSS en el bloque 'styles' #}
+{% block styles %}
+<style>
+    /* Estilos para la foto de perfil */
+    .profile-pic-wrapper {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .profile-pic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    /* Estilos para el botón de toggle de contraseña */
+    .password-toggle {
+        cursor: pointer;
+    }
+
+.btn-join-game {
+        display: none !important;
+    }
+
+</style>
+{% endblock %}
+
+
+{# El contenido de la página va en el bloque 'content' #}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow-sm text-center p-4 h-100">
+                <div class="profile-pic-wrapper">
+                    <img src="https://placehold.co/150x150/63a4ff/FFFFFF?text={{ current_user.username[0]|upper }}" alt="Foto de Perfil" class="profile-pic">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title mt-3">{{ current_user.nombre_completo }}</h4>
+                    <p class="text-muted mb-1">{{ current_user.email }}</p>
+
+                    <p>
+                        {% if current_user.rol == 'admin' %}
+                            <span class="badge bg-danger">Administrador</span>
+                        {% elif current_user.rol == 'profesor' %}
+                            <span class="badge bg-primary">Profesor</span>
+                        {% else %}
+                            <span class="badge bg-success">Alumno</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                             {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <ul class="nav nav-tabs card-header-tabs" id="profileTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="edit-profile-tab" data-bs-toggle="tab" data-bs-target="#edit-profile" type="button" role="tab" aria-controls="edit-profile" aria-selected="true">
+                                Editar Perfil
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">
+                                Seguridad
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="tab-content" id="profileTabsContent">
+                        <div class="tab-pane fade show active" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
+
+                            <form id="profileUpdateForm" action="{{ url_for('actualizar_perfil') }}" method="POST">
+                                <h5 class="mb-3">Información Personal</h5>
+                                <div class="input-group mb-3">
+                                   <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                   <input type="text" class="form-control" id="username" name="username" value="{{ current_user.username }}" placeholder="Nombre de Usuario" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                            <input type="text" class="form-control" id="nombres" name="nombres" value="{{ current_user.nombres }}" placeholder="Nombres" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                            <input type="text" class="form-control" id="apellidos" name="apellidos" value="{{ current_user.apellidos }}" placeholder="Apellidos" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" value="{{ current_user.email }}" disabled readonly>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">
+                                    Guardar Cambios
+                                </button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                            <form id="passwordChangeForm" action="{{ url_for('cambiar_mi_contrasena') }}" method="POST">
+                                <h5 class="mb-3">Cambiar Contraseña</h5>
+                                <div class="input-group mb-3">
+                                   <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                   <input type="password" class="form-control" id="contrasena_actual" name="contrasena_actual" placeholder="Contraseña Actual" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                   <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                   <input type="password" class="form-control" id="nueva_contrasena" name="nueva_contrasena" placeholder="Nueva Contraseña" required minlength="8">
+                                   <span class="input-group-text password-toggle" onclick="togglePassword('nueva_contrasena')"><i class="fas fa-eye"></i></span>
+                                </div>
+                                <div class="input-group mb-3">
+                                   <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                   <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" placeholder="Confirmar Nueva Contraseña" required minlength="8">
+                                   <span class="input-group-text password-toggle" onclick="togglePassword('confirmar_contrasena')"><i class="fas fa-eye"></i></span>
+                                </div>
+                                <div id="passwordError" class="text-danger mb-3" style="display: none;">Las contraseñas no coinciden.</div>
+                                <button type="submit" class="btn btn-secondary w-100">
+                                    Actualizar Contraseña
+                                </button>
+                            </form>
+
+                            <hr class="my-4">
+                            <h5 class="mb-3 text-danger">Zona de Peligro</h5>
+                            <p class="text-muted">Desactivar tu cuenta es una acción permanente. Tu perfil y tus datos se marcarán como inactivos.</p>
+                            <button type="button" id="btnDesactivarCuenta" class="btn btn-danger w-100">
+                                Desactivar mi Cuenta
+                            </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+             <div class="text-center mt-4">
+                {% if current_user.rol == 'profesor' %}
+                    <a href="{{ url_for('inicioProfesores') }}" class="btn btn-outline-dark">Regresar al Dashboard</a>
+                {% elif current_user.rol == 'alumno' %}
+                    <a href="{{ url_for('inicioAlumno') }}" class="btn btn-outline-dark">Regresar al Dashboard</a>
+                {% elif current_user.rol == 'admin' %}
+                    <a href="{{ url_for('listar_usuarios') }}" class="btn btn-outline-dark">Regresar a Usuarios</a>
+                {% else %}
+                    <a href="{{ url_for('inicio') }}" class="btn btn-outline-dark">Regresar</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{# Metemos los scripts JS en el bloque 'scripts' #}
+{% block scripts %}
+
+<script>
+    // Función para mostrar/ocultar la contraseña
+    function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        const icon = field.nextElementSibling.querySelector('i');
+        if (field.type === "password") {
+            field.type = "text";
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            field.type = "password";
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+
+    // --- INICIO: Lógica de Confirmación ---
+    // Usamos DOMContentLoaded para asegurar que todos los elementos estén cargados
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- 1. Confirmación para ACTUALIZAR PERFIL ---
+        const profileForm = document.getElementById('profileUpdateForm');
+        if (profileForm) {
+            profileForm.addEventListener('submit', function(event) {
+                // Detenemos el envío primero
+                event.preventDefault();
+
+                // Pedimos confirmación
+                const confirmacion = confirm("¿Estás seguro de que quieres actualizar tus datos personales?");
+
+                if (confirmacion) {
+                    this.submit(); // 'this' es el formulario. Continuamos con el envío.
+                }
+            });
+        }
+
+
+        // --- 2. Confirmación para CAMBIAR CONTRASEÑA ---
+        const passwordForm = document.getElementById('passwordChangeForm');
+        if (passwordForm) {
+            passwordForm.addEventListener('submit', function(event) {
+                // Detenemos el envío SIEMPRE
+                event.preventDefault();
+
+                const nueva = document.getElementById('nueva_contrasena').value;
+                const confirmar = document.getElementById('confirmar_contrasena').value;
+                const errorDiv = document.getElementById('passwordError');
+
+                // Paso A: Validar que las contraseñas coincidan
+                if (nueva !== confirmar) {
+                    errorDiv.style.display = 'block';
+                    return; // No continuamos si la validación falla
+                } else {
+                    errorDiv.style.display = 'none';
+                }
+
+                // Paso B: Si la validación pasa, pedir confirmación
+                const confirmacion = confirm("¿Estás seguro de que quieres cambiar tu contraseña?");
+
+                if (confirmacion) {
+                    this.submit(); // 'this' es el formulario. Continuamos con el envío.
+                }
+            });
+        }
+
+
+        // --- 3. Confirmación para DESACTIVAR CUENTA (la que ya tenías) ---
+        const deactivateButton = document.getElementById('btnDesactivarCuenta');
+        if(deactivateButton) {
+            deactivateButton.addEventListener('click', function() {
+                // Muestra la confirmación
+                const confirmacion = confirm("¿Estás seguro de que quieres desactivar tu cuenta?\n\nEsta acción es permanente y serás desconectado.");
+
+                if (confirmacion) {
+                    // Si el usuario acepta, llama a la API
+                    fetch('/api/perfil/desactivar', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Éxito: Informa y redirige
+                            alert('Tu cuenta ha sido desactivada. Serás redirigido a la página de inicio.');
+                            window.location.href = "{{ url_for('inicio') }}";
+                        } else {
+                            // Error: Muestra el error
+                            alert('Error: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error en fetch:', error);
+                        alert('Ocurrió un error de conexión al intentar desactivar tu cuenta.');
+                    });
+                }
+            });
+        }
+    });
+    // --- FIN: Lógica de Confirmación ---
+</script>
+{% endblock %}

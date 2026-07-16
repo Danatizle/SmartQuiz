@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puntuaciones Parciales | SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/visualizar_ranking.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="ranking-header">
+            <h1>Tabla de Posiciones</h1>
+            </header>
+
+        <div class="ranking-card">
+            <ol class="ranking-list">
+                {% for jugador in jugadores %}
+                    <li class="player-row 
+                        {% if loop.index == 1 %}podium-first{% endif %}
+                        {% if loop.index == 2 %}podium-second{% endif %}
+                        {% if loop.index == 3 %}podium-third{% endif %}
+                    ">
+                        <span class="player-rank">
+                            {% if loop.index == 1 %}<i class="fas fa-trophy"></i>
+                            {% elif loop.index == 2 %}<i class="fas fa-medal"></i>
+                            {% elif loop.index == 3 %}<i class="fas fa-award"></i>
+                            {% else %}{{ loop.index }}{% endif %}
+                        </span>
+                        <span class="player-name">{{ jugador.nombre }}</span>
+                        <span class="player-score">{{ jugador.puntuacion }} pts</span>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="next-question-notice">
+            <p>Cargando siguiente pregunta...</p>
+        </div>
+
+        </div>
+
+    
+
+</body>
+</html>

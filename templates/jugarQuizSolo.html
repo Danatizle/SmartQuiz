@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugando | SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/juego_base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/juego_alumno.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/juego_solo_alumno.css') }}">
+
+</head>
+<body>
+    <div id="loadingScreen" class="game-screen active">
+        <div class="spinner"></div>
+        <h1>Cargando quiz...</h1>
+    </div>
+    <div id="questionScreen" class="game-screen">
+        <div class="question-header">
+            <span id="questionCounter">1 / 10</span>
+            <div class="timer-container">
+                <div id="timer" class="timer">30</div>
+            </div>
+        </div>
+        <div class="question-body">
+            <h2 id="questionText">¿Cuál es la capital de Perú?</h2>
+            <img id="questionImage" src="" alt="Imagen de la pregunta" class="hidden">
+        </div>
+        <div id="answerOptions" class="answer-options"></div>
+    </div>
+    <div id="feedbackScreen" class="game-screen">
+        <div class="feedback-content">
+            <h1 id="feedbackText">¡Correcto!</h1>
+            <p class="points-display">+ <span id="pointsEarned">950</span> puntos</p>
+        </div>
+    </div>
+
+    <div id="endScreen" class="game-screen results-screen">
+        <!-- Confeti animado -->
+        <div class="confetti-container">
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+        </div>
+
+        <!-- Contenedor principal con animación -->
+        <div class="results-wrapper">
+            <!-- Título con animación -->
+            <div class="results-header">
+                <!--<div class="success-icon">-->
+                <!--    <svg viewBox="0 0 52 52">-->
+                <!--        <circle class="success-circle" cx="26" cy="26" r="25" fill="none"/>-->
+                <!--        <path class="success-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>-->
+                <!--    </svg>-->
+                <!--</div>-->
+                <h1 class="final-title-animated">¡Quiz completado!</h1>
+                <p class="final-subtitle">Excelente trabajo, sigue así 🎉</p>
+            </div>
+
+            <!-- Tarjeta de resultados principal -->
+            <div class="results-card main-stats">
+                <div class="stat-item score-stat">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <span class="stat-label">Puntuación Final</span>
+                        <span class="stat-value" id="myFinalScore">0 pts</span>
+                    </div>
+                </div>
+
+                <div class="stat-item accuracy-stat">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <span class="stat-label">Precisión</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="accuracyBar"></div>
+                        </div>
+                        <span class="stat-value" id="myPrecision">0%</span>
+                    </div>
+                </div>
+
+                <div class="stat-item correct-stat">
+                    <div class="stat-icon">✓</div>
+                    <div class="stat-content">
+                        <span class="stat-label" id="myRankPosition">Preguntas correctas</span>
+                        <span class="stat-value correct-answers" id="myRankScore">? / ?</span>
+                    </div>
+                </div>
+            </div>
+           <!-- Botón centrado para móviles y tablets -->
+            <div class="final-buttons">
+                <a href="{{ url_for('inicioAlumno') }}" class="btn-primary-results btn-mobile">
+                    <span>← Volver al inicio</span>
+                </a>
+            </div>
+
+            <!-- Botón en esquina superior izquierda para laptops -->
+            <div class="btn-back-to-home">
+                <a href="{{ url_for('inicioAlumno') }}" class="btn-primary-results btn-desktop">
+                    <span>← Volver al inicio</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const QUIZ_DATA = {{ quiz_data | tojson | safe }};
+    </script>
+    <script src="{{ url_for('static', filename='js/juego_solo.js') }}"></script>
+</body>
+</html>

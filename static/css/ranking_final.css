@@ -1,0 +1,117 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    text-align: center;
+}
+
+.main-container {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Encabezado */
+.page-header h1 {
+    font-size: 2em;
+    font-weight: 600;
+    color: #444;
+    background-color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 10px;
+}
+
+.page-header h2 {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+/* Contenedor del Podio */
+.podium-container {
+    display: flex;
+    align-items: flex-end; /* Alinea las barras en la parte inferior */
+    justify-content: center;
+    gap: 5px; /* Pequeño espacio entre las barras */
+    height: 400px; /* Altura fija para el contenedor del podio */
+}
+
+/* Cada puesto del podio */
+.podium-spot {
+    width: 200px;
+    display: flex;
+    flex-direction: column-reverse; /* Pone la barra debajo del nombre */
+    align-items: center;
+}
+
+.player-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+}
+
+/* Barra del podio */
+.podium-bar {
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    transition: height 0.5s ease-out;
+}
+
+.first-place .podium-bar { height: 350px; }
+.second-place .podium-bar { height: 250px; }
+.third-place .podium-bar { height: 180px; }
+
+/* Medalla (hexágono) */
+.podium-rank {
+    width: 100px;
+    height: 110px;
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Usamos clip-path para crear la forma de hexágono */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.podium-rank i { font-size: 0.6em; margin-bottom: -10px; }
+
+/* Colores de las medallas */
+.first-place .podium-rank { background-color: #ffd700; /* Oro */ }
+.second-place .podium-rank { background-color: #c0c0c0; /* Plata */ }
+.third-place .podium-rank { background-color: #cd7f32; /* Bronce */ }
+
+.player-score {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* --- AÑADE ESTE BLOQUE --- */
+.redirect-notice {
+    margin-top: 60px;
+    color: #6c757d;
+    font-size: 1em;
+}

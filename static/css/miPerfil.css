@@ -1,0 +1,317 @@
+/* ==============================================
+   miPerfil.css - Estilos COMPLETOS y CORREGIDOS
+   (Header de inicioProfesores + Contenido de miPerfil)
+   ============================================== */
+
+/* --- 1. Estilos Generales y Variables (Base) --- */
+:root {
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text-dark: #212529;
+    --color-text-medium: #6c757d;
+    --color-border: #dee2e6;
+    --color-primary: #4a69bd; /* Color azul de inicioProfesores */
+    --color-primary-hover: #3a57a4;
+    --color-primary-button: #0d6efd; /* Azul de la imagen de perfil */
+    --color-primary-button-hover: #0b5ed7;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text-dark);
+}
+
+.container {
+    max-width: 1024px; /* Ancho más estrecho para la pág de perfil */
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- 2. Header y Navegación Superior (de inicioProfesores.css) --- */
+.main-header {
+    background-color: var(--color-card);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1320px; /* Hacemos el header más ancho */
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.nav-left-group, .nav-right-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.site-logo {
+    height: 60px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--color-text-medium);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-button:hover {
+    background-color: #f1f1f1;
+    color: var(--color-text-dark);
+}
+
+.nav-button.active {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.profile-container {
+    position: relative;
+}
+
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--color-border);
+    object-fit: cover;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: var(--color-card);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    width: 180px;
+    z-index: 101;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.profile-dropdown.hidden {
+    display: none !important;
+}
+
+.profile-dropdown a,
+.profile-dropdown .dropdown-link {
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    display: block;
+    font-weight: 500;
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown .dropdown-link:hover {
+    background-color: var(--color-bg);
+}
+
+.profile-dropdown .dropdown-link.active {
+    background-color: #e9ecef;
+    font-weight: 600;
+}
+
+/* --- 3. Contenido de la página (Adaptado a la imagen) --- */
+.page-content {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.page-title {
+    font-size: 2rem; /* 32px */
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-medium);
+    margin-top: 0.25rem;
+    margin-bottom: 2.5rem;
+}
+
+/* --- Tarjeta de Perfil --- */
+.profile-card {
+    background-color: var(--color-card);
+    border-radius: 1rem; /* 16px */
+    border: 1px solid var(--color-border);
+    margin-bottom: 1.5rem; /* Espacio entre tarjetas */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card-title {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+    color: var(--color-text-dark);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+form {
+    padding: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* 8px */
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--color-text-dark);
+    font-size: 0.875rem; /* 14px */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-primary-button); /* Azul de la imagen */
+    background-color: var(--color-card);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.form-group input:disabled {
+    background-color: #f8f9fa; /* Fondo gris claro */
+    color: var(--color-text-dark); /* Texto oscuro como en la imagen */
+    border-color: var(--color-border);
+    cursor: default; /* Cambiado de not-allowed */
+    opacity: 1; /* Asegura que no se vea "apagado" */
+}
+
+.form-hint {
+    font-size: 0.875rem;
+    color: var(--color-text-medium);
+    margin-top: 0.25rem;
+}
+
+/* Contraseña */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    padding-right: 3rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Información de la cuenta */
+.info-container {
+    padding: 0.5rem 1.5rem;
+}
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+.info-row:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.info-label {
+    font-weight: 500;
+    color: var(--color-text-dark);
+}
+
+.info-value {
+    color: var(--color-text-medium);
+}
+
+/* Botón final */
+.page-actions {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.btn-action-primary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--color-primary-button); /* Azul de la imagen */
+    color: white;
+    border: none;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.btn-action-primary:hover {
+    background-color: var(--color-primary-hover); /* Azul más oscuro */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        padding: 0 1rem;
+    }
+    .header-nav {
+        padding: 0 1rem;
+    }
+    .nav-links {
+        display: none;
+    }
+    .nav-right-group {
+        gap: 1rem;
+    }
+}

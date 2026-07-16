@@ -1,0 +1,302 @@
+/* ===============================================================
+    Hoja de Estilos para la Página de Juego del Alumno
+    =============================================================== */
+
+/* --- 1. VARIABLES DE COLORES Y ESTILOS GLOBALES --- */
+:root {
+    /* ✅ Colores para cada opción de respuesta */
+    --color-red: #e21b3c;
+    --color-blue: #1368ce;
+    --color-yellow: #d89e00;
+    --color-green: #26890c;
+
+    --color-dark: #333;
+    --color-light: #f4f4f4;
+    --color-gray: #ccc;
+    --color-correct: #26c281;
+    --color-incorrect: #e63946;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    transition: background-color 0.5s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- 2. CONTENEDOR PRINCIPAL Y HEADER --- */
+.game-container {
+    width: 100%;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+.progress-info { flex: 1; font-weight: 600; }
+.progress-bar-container { width: 100%; height: 8px; background-color: #e0e0e0; border-radius: 4px; margin-top: 0.5rem; }
+.progress-bar { width: 0%; height: 100%; background-color: var(--color-blue); border-radius: 4px; transition: width 0.3s ease; }
+.quiz-title { flex: 2; text-align: center; font-size: 1.25rem; font-weight: 700; }
+.timer-container { flex: 1; text-align: right; font-weight: 600; }
+#timer {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+
+/* --- 3. ÁREA DE LA PREGUNTA --- */
+.question-area {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.media-container {
+    width: 100%;
+    max-height: 250px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.media-container img {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.question-box {
+    width: 100%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+#question-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* --- 4. GRID DE RESPUESTAS CON ANIMACIÓN --- */
+.answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.answer-option {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 4px solid transparent;
+    /* ✅ TRANSICIÓN PARA LA ANIMACIÓN */
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.3s;
+}
+
+/* ✅ --- EFECTO HOVER (ANIMACIÓN AL PASAR EL CURSOR) --- */
+.answer-option:not(.disabled):hover {
+    transform: scale(1.03); /* Hace el botón un poco más grande */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Añade una sombra más pronunciada */
+    filter: brightness(110%); /* Lo hace un poco más brillante */
+}
+
+.answer-option.selected {
+    border-color: rgba(0, 0, 0, 0.4);
+    transform: scale(1.02); /* Mantiene el tamaño al seleccionar */
+}
+
+.answer-option.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.answer-option.disabled:hover { /* Evita la animación en botones deshabilitados */
+    transform: none;
+    box-shadow: none;
+    filter: none;
+}
+
+.answer-shape {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+.answer-shape svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+/* --- Estilo para imágenes y videos de la pregunta --- */
+.media-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.media-container img.question-image {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.media-container video.question-video {
+    max-width: 80%;
+    border-radius: 10px;
+}
+
+
+/* ✅ --- ASIGNACIÓN DE COLORES A CADA BOTÓN --- */
+.answer-option[data-color="red"] { background-color: var(--color-red); }
+.answer-option[data-color="blue"] { background-color: var(--color-blue); }
+.answer-option[data-color="yellow"] { background-color: var(--color-yellow); }
+.answer-option[data-color="green"] { background-color: var(--color-green); }
+
+/* --- 5. ANIMACIONES DE RESPUESTA (CORRECTO/INCORRECTO) --- */
+.answer-option.correct {
+    animation: pulse-correct 0.8s;
+    background-color: var(--color-correct);
+    border-color: #fff;
+}
+.answer-option.incorrect {
+    animation: shake-incorrect 0.5s;
+    background-color: var(--color-incorrect);
+}
+.answer-option.faded {
+    opacity: 0.4;
+}
+
+/* --- ESTILOS FEEDBACK (Correcto / Incorrecto) --- */
+#feedbackScreen.correct {
+    background-color: #28a745; /* Verde éxito */
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+#feedbackScreen.incorrect {
+    background-color: #dc3545; /* Rojo error */
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+#feedbackText {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: popIn 0.5s ease;
+}
+
+#pointsEarned {
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+    animation: floatUp 1s ease;
+}
+
+/* Animación al aparecer */
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Animación de puntos flotantes */
+@keyframes floatUp {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(-10px); opacity: 1; }
+}
+
+
+@keyframes pulse-correct {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+@keyframes shake-incorrect {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* --- 6. BOTÓN DE ENVIAR Y PANTALLA DE RESULTADOS --- */
+.submit-btn {
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--color-dark);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.submit-btn:hover:not(:disabled) { background-color: #555; }
+.submit-btn:disabled { background-color: var(--color-gray); cursor: not-allowed; }
+
+.results-container { padding: 3rem; text-align: center; }
+.results-container h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+.final-score { font-size: 4rem; font-weight: 700; color: var(--color-blue); margin: 1rem 0; }
+#score-details { font-size: 1.2rem; margin-bottom: 2rem; }
+.btn-back-home { padding: 1rem 2rem; background-color: var(--color-green); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.2s; }
+.btn-back-home:hover { background-color: #34a81a; }
+
+/* --- 7. RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+    .game-header { flex-direction: column; gap: 1rem; text-align: center; }
+    .quiz-title { order: -1; }
+    .timer-container, .progress-info { text-align: center; }
+    .answers-grid { grid-template-columns: 1fr; }
+    #question-text { font-size: 1.5rem; }
+    .answer-option { padding: 1rem; }
+}
+
+
+/* --- OPCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAL --- */
+#feedbackScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}

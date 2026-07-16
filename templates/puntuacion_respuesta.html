@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respuesta | SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/puntuacion_respuesta.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="question-number">
+            <span>Pregunta {{ numero_pregunta }}</span>
+        </div>
+
+        <div class="feedback-card {% if es_correcta %}correct{% else %}incorrect{% endif %}">
+            <p class="response-status-text">Su respuesta ha sido...</p>
+            
+            <h1 class="response-result">{% if es_correcta %}¡CORRECTA!{% else %}INCORRECTA{% endif %}</h1>
+            
+            <div class="feedback-icon">
+                {% if es_correcta %}
+                    <i class="fas fa-check-circle"></i>
+                {% else %}
+                    <i class="fas fa-times-circle"></i>
+                {% endif %}
+            </div>
+
+            {% if es_correcta %}
+                <p class="streak-info">Racha de Respuestas Correctas: <span>{{ racha_correctas }}</span></p>
+                <div class="score-gain">
+                    + {{ puntuacion_obtenida }}
+                </div>
+            {% else %}
+                <div class="score-gain negative">
+                    + 0
+                </div>
+            {% endif %}
+
+            <p class="current-rank">Actualmente estás en el puesto: <span>{{ puesto_actual }}</span></p>
+        </div>
+    </div>
+    
+    <script>
+        // La redirección funciona para ambos casos
+        setTimeout(function() {
+            window.location.href = "{{ url_for('visualizar_ranking') }}"; 
+        }, 5000); // 5 segundos
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Mis Resultados</h1>
+    <p>¡Hola, {{ current_user.nombre_completo }}!</p>
+    <p>Aquí se mostrará la lista de tus resultados en los quizzes que has completado.</p>
+    
+    <a href="{{ url_for('inicio_alumno') }}" class="btn btn-primary mt-3">Volver al Inicio</a>
+</div>
+{% endblock %}

@@ -1,0 +1,208 @@
+/* ======= ESTILOS GENERALES ======= */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #0c0f18;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.professor-panel {
+    width: 95%;
+    max-width: 1100px;
+}
+
+/* ======= BARRA SUPERIOR ======= */
+.game-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #182033;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #24304b;
+}
+
+.game-info-bar h2 {
+    margin: 0;
+    color: #4ec3ff;
+}
+
+/* ======= CONTENEDORES ======= */
+.view-container {
+    background: #131b2c;
+    border-radius: 12px;
+    padding: 25px;
+    display: none;
+}
+
+.view-container:not(.hidden) {
+    display: block;
+}
+
+/* ======= PREGUNTA ======= */
+.question-header-prof {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#profQuestionCounter {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f8f8f8;
+}
+
+.timer {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: #252f48;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid #3b4d70;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+}
+
+/* IMAGEN DE PREGUNTA */
+.prof-question-body {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#profQuestionImage {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+}
+
+#profQuestionImage.hidden {
+    display: none;
+}
+
+/* OPCIONES DE RESPUESTA */
+.prof-answer-options-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.prof-answer-option {
+    background: #1c253a;
+    border-left: 5px solid #e21b3c;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.prof-answer-option:hover {
+    background: #22304a;
+    transform: translateX(5px);
+}
+
+.prof-answer-option.correct-answer {
+    background: linear-gradient(135deg, rgba(38, 137, 12, 0.2), rgba(38, 137, 12, 0.1));
+    border-left-color: #268909;
+    font-weight: 600;
+    color: #90ee90;
+}
+
+.prof-answer-option.correct-answer .correct-badge {
+    color: #268909;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.answers-counter {
+    text-align: center;
+    background: #1c253a;
+    padding: 12px;
+    border-radius: 10px;
+    width: 140px;
+    margin: 0 auto 20px auto;
+}
+
+.answers-counter span {
+    font-size: 1.8rem;
+    display: block;
+    color: #4ec3ff;
+    font-weight: bold;
+}
+
+/* ======= BOTONES ======= */
+.btn-primary,
+.btn-secondary {
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0068d6;
+}
+
+.btn-secondary {
+    background: #2d3b57;
+    color: #fff;
+    border: 1px solid #3c4a66;
+}
+
+.btn-secondary:hover {
+    background: #425270;
+}
+
+/* ======= CONTROLES INFERIORES ======= */
+.prof-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* ======= RESULTADOS (GRÁFICO) ======= */
+.chart-container {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+/* ======= MARCADOR ======= */
+.leaderboard {
+    margin-top: 20px;
+    background: #1b2438;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    background: #11192b;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border: 1px solid #26324e;
+}
+
+

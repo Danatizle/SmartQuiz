@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.game-screen, .view-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.game-screen.active, .view-container:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #4a90e2;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #357ABD;
+}
+.btn-primary:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- ESTILOS PARA EL PODIO FINAL (Estilo Kahoot) --- */
+
+/* Contenedor principal del podio en la vista final */
+.podium-final-style {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Alinea las barras en la parte inferior */
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    min-height: 250px; /* Altura mínima para que se vea bien */
+}
+
+/* Cada uno de los 3 lugares */
+.podium-spot {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+/* Estilos para el nombre del jugador */
+.podium-spot .player-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}
+
+/* La barra de color que representa el lugar */
+.podium-spot .podium-bar {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* El número del ranking (1, 2, 3) */
+.podium-spot .podium-rank {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* La puntuación del jugador */
+.podium-spot .player-score {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Colores y alturas para cada lugar */
+
+.podium-spot.first-place .podium-bar {
+    background-color: #D4AF37; /* Oro */
+    min-height: 200px;
+}
+
+.podium-spot.second-place .podium-bar {
+    background-color: #C0C0C0; /* Plata */
+    min-height: 150px;
+}
+
+.podium-spot.third-place .podium-bar {
+    background-color: #CD7F32; /* Bronce */
+    min-height: 100px;
+}
+
+/* Placeholder para cuando no hay jugador en ese puesto */
+.podium-spot.empty {
+    min-height: 50px;
+    visibility: hidden; /* Oculta pero mantiene el espacio */
+}
+
+/* Mensaje si el podio está vacío */
+.empty-podium-message {
+    color: #aaa;
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+}
+
+/* --- Ajustes al HTML del Alumno --- */
+#endScreen .personal-score-container {
+    background-color: rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#endScreen .final-score-display {
+    color: #FFC107; /* Amarillo brillante para la puntuación */
+    font-size: 2.5rem;
+    margin: 5px 0 0 0;
+}
+
+#endScreen .podium-container-final {
+    margin-top: 30px;
+}
+
+#endScreen .btn-volver {
+    margin-top: 30px;
+}

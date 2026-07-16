@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresa tu Nombre | SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ingresar_nombre.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        
+        <h1 class="site-name">SmartQuiz</h1>
+
+        <div class="entry-card">
+            <form action="{{ url_for('unirse_al_quiz') }}" method="post">
+                <label for="nickname">Ingrese un nombre:</label>
+                <input type="text" id="nickname" name="nickname" placeholder="Tu apodo para el juego" required autofocus>
+                
+                <input type="hidden" name="pin" value="{{ pin }}">
+                
+                <button type="submit">UNIRME</button>
+            </form>
+        </div>
+
+        <div class="room-info">
+            <p>Estás a punto de unirte a la sala con el PIN: <strong>{{ pin }}</strong></p>
+        </div>
+
+    </div>
+</body>
+</html>

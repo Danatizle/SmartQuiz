@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de Espera - SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sala_espera.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="panel-unirse">
+            <h2>Unirse</h2>
+
+            <div class="qr-container" id="qrContainer">
+                <div class="qr-loading">Generando código QR...</div>
+            </div>
+
+            <div class="pin-container">
+                <div class="pin-label">PIN de juego</div>
+                <div class="pin-numero" id="pinDisplay">{{pin}}</div>
+            </div>
+
+            <button class="btn-salir" onclick="salirDelJuego()">Salir</button>
+        </div>
+
+        <div class="panel-centro">
+            <div class="mensaje-principal">
+                <h1>¿Estamos listos?</h1>
+                <p>Esperando a que todos se unan...</p>
+            </div>
+
+            <button class="btn-empezar" id="btnEmpezar" onclick="empezarJuego()" disabled>
+                Empezar el juego
+            </button>
+        </div>
+
+        <div class="panel-participantes">
+            <h2>Participantes</h2>
+            <div class="contador-participantes">
+                <span id="contadorParticipantes">0 jugadores conectados</span>
+            </div>
+
+            <div class="lista-participantes" id="listaParticipantes">
+                <div class="empty-state">
+                    <div class="empty-state-icon">👥</div>
+                    <p>Esperando participantes...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Obtener el PIN de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pin = urlParams.get('pin');
+
+        if (pin) {
+            // Buscar el elemento donde quieres mostrar el PIN
+            const pinElement = document.querySelector('.pin-display'); // Ajusta el selector según tu HTML
+            if (pinElement) {
+                pinElement.textContent = pin;
+            }
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="{{ url_for('static', filename='js/sala_de_espera.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/clases.js') }}"></script>
+
+</body>
+</html>

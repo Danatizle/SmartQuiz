@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Smartquiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicioAlumno.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="container header-nav">
+            <div class="nav-left-group">
+                <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Smartquiz Logo" class="site-logo">
+            </div>
+            <div class="nav-right-group">
+                <div class="nav-links">
+                    <a href="{{ url_for('inicioAlumno') }}" class="nav-button active">Inicio</a>
+                    <a href="{{ url_for('explorarQuizzesAlumno') }}" class="nav-button">Explorar Quizzes</a>
+                </div>
+                <a href="{{ url_for('unirse') }}" class="btn-join-game">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M216,40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H82.9a23.9,23.9,0,0,0,4.5,12.6,32,32,0,0,0,57.2,0,23.9,23.9,0,0,0,4.5-12.6H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V72H40V56ZM40,176V88H216l.0044,88H171.1a40,40,0,0,0-86.2,0H40ZM176,128a12,12,0,1,1-12-12A12,12,0,0,1,176,128Zm-36,0a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM92,108H68v24a12,12,0,0,1-24,0V108H20a12,12,0,0,1,0-24H44V60a12,12,0,0,1,24,0V84H92a12,12,0,0,1,0,24Z"></path>
+                    </svg>
+                    <span>Unirse a un juego</span>
+                </a>
+                <div class="profile-container">
+                    <img src="{{ url_for('static', filename='img/avatar_placeholder.png') }}" alt="Avatar del usuario" class="user-avatar" id="avatar-button">
+                    <div class="profile-dropdown hidden" id="profile-menu">
+                        <div class="dropdown-header">
+                            <span class="username">{{ current_user.username }}</span>
+                            <span class="user-role">{{ current_user.rol|capitalize }}</span>
+                        </div>
+                        <a href="{{ url_for('miPerfil') }}">Mi perfil</a>
+                        <a href="{{ url_for('logout') }}">Salir</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container page-content">
+        <section class="activity-feed">
+            <h2 class="section-title">Mi Actividad Reciente</h2>
+            <div class="quiz-grid">
+                {% for quiz in quizzes %}
+                <a href="{{ url_for('jugar_quiz', id_cuestionario=quiz.id_cuestionario) }}" class="quiz-card">
+                    <div class="quiz-thumbnail" style="background-image: {% if quiz.imagen_portada %}url('{{ quiz.imagen_portada }}'){% else %}{{ quiz.color | safe }}{% endif %};">
+                    </div>
+                    <div class="quiz-info">
+                        <h3>{{ quiz.nombre_cuestionario }}</h3>
+                        <p class="quiz-creator">Creado por {{ quiz.creador }}</p>
+                        <div class="quiz-players"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a40,40,0,1,0,40,40A40,40,0,0,0,128,80Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,144Zm0-120C72.5,24,24,72.5,24,128s48.5,104,104,104,104-48.5,104-104S183.5,24,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Z"></path></svg>
+                            <span>{{ quiz.puntuacion }} puntos</span>
+                        </div>
+                    </div>
+                </a>
+                {% else %}
+                <div class="empty-state">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"></path></svg>
+                    <h3>No has jugado ningún quiz</h3>
+                    <p>¡Únete a un juego o explora quizzes públicos para empezar!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="my-results">
+            <h2 class="section-title">Mis Resultados Completos</h2>
+            <div class="results-table-container">
+                {% if resultados %}
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Cuestionario</th>
+                            <th>Autor</th>
+                            <th>Fecha</th>
+                            <th>Puntuación</th>
+                            <th>Precisión</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        {% for resultado in resultados %}
+                        <tr>
+                            <td data-label="Cuestionario">{{ resultado.nombre_cuestionario }}</td>
+                            <td data-label="Autor">{{ resultado.creador }}</td>
+                            <td data-label="Fecha">{{ resultado.fecha }}</td>
+                            <td data-label="Puntuación">{{ resultado.puntuacion }}</td>
+                            <td data-label="Precisión">
+                                <span class="precision-bar" style="--precision-width: {{ resultado.precision }}%;">
+                                    {{ resultado.precision }}%
+                                </span>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="empty-state">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 256 256"><path d="M224,48H32A16,16,0,0,0,16,64V208a8,8,0,0,0,16,0V176H224a8,8,0,0,0,0-16H42.26l23.35-35.05a16,16,0,0,0-21.22-25.9l-32,48A8,8,0,0,0,16,160v48a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm-80,40a16,16,0,1,1,16,16A16,16,0,0,1,144,88Z"></path></svg>
+                    <h3>No tienes resultados</h3>
+                    <p>Completa tu primer cuestionario para ver tus resultados aquí.</p>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/inicioAlumno.js') }}"></script>
+</body>
+</html>

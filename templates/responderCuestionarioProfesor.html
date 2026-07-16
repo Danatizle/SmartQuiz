@@ -1,0 +1,106 @@
+<!--responderCuestionarioProfesor.html-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Panel del Profesor | SmartQuiz</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responderCuestionarioProfesor1.css') }}"/>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+</head>
+<body>
+    <div class="professor-panel">
+        <div class="game-info-bar">
+            <span>PIN: <strong id="pinDisplay">{{ pin }}</strong></span>
+            <h2 id="quizTitle">Cargando título...</h2> </div>
+
+        <div id="questionView" class="view-container"> <div class="question-header-prof">
+                <span id="profQuestionCounter">Pregunta ? de ?</span>
+                <div id="profTimer" class="timer">--</div>
+            </div>
+
+            <h1 id="profQuestionText">Esperando pregunta...</h1>
+
+            <div class="answers-counter">
+                <span id="answersCount">0</span>
+                <p>Respuestas</p>
+            </div>
+
+            <div class="prof-controls">
+                <button id="nextQuestionBtn" class="btn-primary">Siguiente</button>
+            </div>
+        </div>
+
+        <div id="resultsView" class="view-container hidden">
+            <h1 id="resultQuestionText">Resultados de la pregunta</h1>
+
+            <div class="chart-container">
+                <canvas id="resultsChart"></canvas>
+            </div>
+
+            <div id="liveGameControls" class="prof-controls">
+                <button id="showLeaderboardBtn" class="btn-secondary">Marcador</button>
+                <button id="goToNextQuestionBtn" class="btn-primary">Siguiente Pregunta</button>
+            </div>
+
+            <div id="reviewControls" class="prof-controls hidden">
+                <button id="btnPrevReview" class="btn-secondary">⬅ Anterior</button>
+                <span id="reviewCounter" style="color: white; margin: 0 15px; font-weight: bold;">1 / 5</span>
+                <button id="btnNextReview" class="btn-primary">Siguiente ➡</button>
+                <button id="btnExitReview" class="btn-danger" style="margin-left: 20px;">Salir al Podio</button>
+            </div>
+        </div>
+
+        <div id="leaderboardView" class="view-container hidden">
+            <h1>Marcador Completo</h1>
+
+            <div id="leaderboardList" class="leaderboard">
+                 <p>Cargando marcador...</p>
+            </div>
+
+            <div class="prof-controls">
+                <button id="backToPodiumBtn" class="btn-secondary hidden">Regresar al Podio Final</button>
+
+                <button id="backToResultsBtn" class="btn-secondary">Ver Gráfico Pregunta</button>
+
+                <button id="leaderboardNextBtn" class="btn-primary">Siguiente Pregunta</button>
+            </div>
+        </div>
+
+<div id="finalView" class="view-container hidden final-view">
+    <h1 class="final-title">¡Juego terminado!</h1>
+
+    <div id="podium" class="podium-container"></div>
+
+    <div class="rewards-container">
+        <h3>Recompensas</h3>
+        <ul id="rewardsList" class="rewards-list"></ul>
+    </div>
+
+   <div class="prof-controls final-buttons">
+        <button id="verPuntuacionesBtn" class="btn-secondary">Marcador Completo</button>
+        <button id="exportarDatosBtn" class="btn-secondary">Exportar Resultados</button>
+
+        <button id="exportarAOneDriveBtn" class="btn-secondary" title="Guardar resultados en tu OneDrive">
+            Exportar a OneDrive
+        </button>
+
+        <a id="finalizarJuegoLink" class="btn-primary" href="{{ url_for('inicioProfesores') }}">Finalizar y Salir</a>
+    </div>
+
+
+</div>
+
+    </div> <script>
+
+        const PIN = "{{ pin | default('UNKNOWN') | escape }}"; // Añadido default y escape por seguridad
+    </script>
+    <script src="{{ url_for('static', filename='js/juego_profesor.js') }}"></script>
+</body>
+</html>

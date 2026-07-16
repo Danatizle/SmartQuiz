@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Detallados | SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resultados_detallados.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="page-header">
+            <h1>{{ nombre_cuestionario }}</h1>
+        </header>
+
+        <div class="export-buttons">
+            <a href="{{ url_for('exportar_excel', quiz_id=quiz.id) }}" class="btn btn-export">
+                <i class="fas fa-file-excel"></i> Exportar resultados a Excel
+            </a>
+            <a href="{{ url_for('exportar_drive', quiz_id=quiz.id) }}" class="btn btn-export">
+                <i class="fab fa-google-drive"></i> Exportar resultados a Google Drive
+            </a>
+        </div>
+
+        <main class="podium-container">
+            <div class="podium-spot second-place">
+                <p class="player-name">{{ top_3[1].nombre }}</p>
+                <div class="podium-bar">
+                    <div class="podium-rank">
+                        <i class="fas fa-medal"></i>
+                        <span>2</span>
+                    </div>
+                    <p class="player-score">{{ top_3[1].puntuacion }} pts</p>
+                    <p class="player-reward">{{ top_3[1].recompensa }}</p>
+                </div>
+            </div>
+
+            <div class="podium-spot first-place">
+                <p class="player-name">{{ top_3[0].nombre }}</p>
+                <div class="podium-bar">
+                    <div class="podium-rank">
+                        <i class="fas fa-trophy"></i>
+                        <span>1</span>
+                    </div>
+                    <p class="player-score">{{ top_3[0].puntuacion }} pts</p>
+                    <p class="player-reward">{{ top_3[0].recompensa }}</p>
+                </div>
+            </div>
+
+            <div class="podium-spot third-place">
+                <p class="player-name">{{ top_3[2].nombre }}</p>
+                <div class="podium-bar">
+                    <div class="podium-rank">
+                        <i class="fas fa-award"></i>
+                        <span>3</span>
+                    </div>
+                    <p class="player-score">{{ top_3[2].puntuacion }} pts</p>
+                    <p class="player-reward">{{ top_3[2].recompensa }}</p>
+                </div>
+            </div>
+        </main>
+
+        <div class="action-buttons">
+            <a href="{{ url_for('dashboard_profesor') }}" class="btn btn-primary">Volver al Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

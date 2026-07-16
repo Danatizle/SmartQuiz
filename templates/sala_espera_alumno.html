@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de Espera | SmartQuiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/salaEsperaAlumno.css') }}">
+</head>
+<body>
+    <div class="main-container">
+
+        <div class="panel panel-jugador">
+            <h1 class="site-name">SmartQuiz</h1>
+            <img
+                id="avatarImg"
+                class="avatar"
+                src="https://api.dicebear.com/7.x/identicon/svg?seed={{ nickname }}"
+                alt="Avatar"
+            >
+            <p class="nickname-display" id="nombreJugador">{{ nickname }}</p>
+            <button class="btn-edit-nickname" id="btnEditarNombre">✏️ Editar nombre</button>
+            <p class="pin-info">PIN de la partida: <strong id="pinDisplay">{{ pin }}</strong></p>
+
+            <div class="loader-container" id="loader-espera-container">
+                <div class="loader"></div>
+                <p id="estado-partida-texto">Esperando a que el anfitrión inicie el quiz...</p>
+            </div>
+
+            <button class="btn-exit" id="btnSalir">❌ Salir de la sala</button>
+        </div>
+
+        <div class="panel panel-grupos">
+            <h2>Gestión de Equipos</h2>
+
+            <div id="grupos-container" class="grupos-grid-wrapper">
+                <div class="grupos-grid-placeholder">
+                    <p>Cargando grupos...</p>
+                    <div class="loader small-loader"></div>
+                </div>
+            </div>
+
+            <div class="empty-state hidden" id="empty-groups-state">
+                <div class="empty-state-icon">👥</div>
+                <p>El anfitrión aún no ha configurado equipos. ¡Prepárate para el modo individual o espera a que cree grupos!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="confirmationModal">
+        <div class="modal-content custom-alert-modal">
+            <h3 id="modalTitle">Confirmar Acción</h3>
+            <p id="modalMessage">¿Estás seguro de que quieres realizar esta acción?</p>
+            <div class="modal-actions custom-alert-actions">
+                <button class="btn-modal-cancel" id="btnCancelModal">Cancelar</button>
+                <button class="btn-modal-confirm danger" id="btnConfirmModal">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const FLASK_PIN = "{{ pin }}";
+        const FLASK_NICKNAME = "{{ nickname }}";
+        const FLASK_URL_INICIO_ALUMNO = "{{ url_for('inicioAlumno') }}";
+        const pin = "{{ pin }}";
+        const nickname = "{{ nickname }}";
+
+        setInterval(async () => {
+            try {
+                const res = await fetch(`/api/sala-espera/${pin}`);
+                const data = await res.json();
+                if (data.success && data.datos.partida.estado === "en_curso") {
+                    // Redirigir al juego
+                    window.location.href = `/jugar_partida?pin=${pin}&nickname=${nickname}`;
+                }
+            } catch (e) {
+                console.error("Error verificando estado de la partida:", e);
+            }
+        }, 2000);
+    </script>
+
+    <script src="{{ url_for('static', filename='js/sala_de_espera.js') }}"></script>
+</body>
+</html>
